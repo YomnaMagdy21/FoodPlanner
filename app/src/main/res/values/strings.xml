@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">FoodPlanner</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="login">Login</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="google">Continue with Google</string>
+    <string name="or">OR</string>
+    <string name="google1">Continue with Google</string>
+    <string name="do_not">Don\'t have an account?</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="confirm">Confirm</string>
+    <string name="confirm1">Confirm Password</string>
+    <string name="already">Already have an account?</string>
+    <string name="recipe_inspire">Daily Inspiration</string>
 </resources>

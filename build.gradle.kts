@@ -2,3 +2,9 @@
 plugins {
     id("com.android.application") version "8.2.2" apply false
 }
+
+buildscript{
+    dependencies{
+        classpath ("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3")
+    }
+}
