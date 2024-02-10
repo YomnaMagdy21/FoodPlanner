@@ -8,4 +8,5 @@ public interface AllMealView {
     public void showData(List<Meal> meals);
     public void showErrMsg(String error);
    // public void addProduct(Product product);
+    public void navigateToDetails(Meal meal);
 }

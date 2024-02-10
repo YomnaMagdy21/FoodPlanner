@@ -7,6 +7,12 @@ import retrofit2.http.GET;
 
 public interface MealService {
 
-  @GET("meals")
+  @GET("search.php?s")
   Call<MealResponse> getMeals();
+
+  @GET("categories.php")
+  Call<MealResponse> getCategories();
+
+  @GET("list.php?a=list")
+  Call<MealResponse> getArea();
 }

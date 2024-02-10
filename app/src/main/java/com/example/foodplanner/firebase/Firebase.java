@@ -12,7 +12,7 @@ public class Firebase {
     GoogleSignInClient mGoogleSignInClient;
 
 
-    public void loginWithGoogle(Context context){
+    public void request(Context context){
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();

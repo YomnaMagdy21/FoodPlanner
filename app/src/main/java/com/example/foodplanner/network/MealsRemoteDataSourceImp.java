@@ -14,7 +14,7 @@ public class MealsRemoteDataSourceImp {
 
 
     private static final String TAG="RESPONSE";
-    private static final String BASE_URL="https://www.themealdb.com/";
+    private static final String BASE_URL="https://www.themealdb.com/api/json/v1/1/";
     private static MealsRemoteDataSourceImp client=null;
     private MealService mealService;
 

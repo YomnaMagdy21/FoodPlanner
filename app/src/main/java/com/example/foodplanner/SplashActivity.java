@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 openSignInScreen();
             }
-        }, 4000);
+        }, 3800);
 
 
     }

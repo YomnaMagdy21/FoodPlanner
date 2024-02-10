@@ -1,6 +1,7 @@
 package com.example.foodplanner.home.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -58,10 +60,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         Meal meal = meals.get(position);
 
 
-         holder.fav.setImageResource(R.drawable.black_fav);
-        holder.calender.setImageResource(R.drawable.calendar);
+//         holder.fav.setImageResource(R.drawable.black_fav);
+//        holder.calender.setImageResource(R.drawable.calendar);
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.img);
         holder.mealName.setText(meal.getStrMeal());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.navigateToDetails(meal);
+            }
+        });
 
 
 
@@ -78,6 +86,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         ImageView img,fav,calender;
 
         TextView mealName;
+        CardView cardView;
 
 
 
@@ -86,8 +95,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             super(itemView);
             img = itemView.findViewById(R.id.imgMeal);
             mealName = itemView.findViewById(R.id.mealName);
-            fav = itemView.findViewById(R.id.blackFav);
-            calender = itemView.findViewById(R.id.calender);
+//            fav = itemView.findViewById(R.id.blackFav);
+//            calender = itemView.findViewById(R.id.calender);
+            cardView=itemView.findViewById(R.id.cardView);
 
 
         }

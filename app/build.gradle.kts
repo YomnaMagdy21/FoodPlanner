@@ -56,17 +56,26 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.7.2")
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+
     //firebase
     implementation("com.google.firebase:firebase-auth:22.3.1")
     implementation("com.google.firebase:firebase-database:20.3.0")
 
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
-    implementation ("com.github.shobhitpuri:custom-google-signin-button:2.0.0")
+//    implementation ("com.github.shobhitpuri:custom-google-signin-button:2.0.0")
 
       //room
     implementation ("androidx.room:room-runtime:2.6.1")
     annotationProcessor ("androidx.room:room-compiler:2.6.1")
 
+    //circularImg
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+    //youtube
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28")
 
 
     testImplementation("junit:junit:4.13.2")

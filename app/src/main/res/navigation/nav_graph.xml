@@ -8,11 +8,11 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.foodplanner.login.view.LoginFragment"
-        android:label="fragment_login"
+        android:label="Login"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.foodplanner.signup.view.SignUpFragment"
-        android:label="fragment_sign_up"
+        android:label="Sign Up"
         tools:layout="@layout/fragment_sign_up" />
 </navigation>
