@@ -16,4 +16,6 @@
     <string name="confirm1">Confirm Password</string>
     <string name="already">Already have an account?</string>
     <string name="recipe_inspire">Daily Inspiration</string>
+    <string name="guest">Guest</string>
+    <string name="small_signup">Sign up</string>
 </resources>

@@ -19,21 +19,23 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="match_parent"
-            android:layout_height="131dp"
+            android:id="@+id/imgMeal"
+            android:layout_width="213dp"
+            android:layout_height="138dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
             app:srcCompat="@drawable/load" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/mealName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="160dp"
             android:text="TextView" />
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/calender"
             android:layout_width="46dp"
             android:layout_height="40dp"
             android:layout_marginStart="10dp"
@@ -41,7 +43,7 @@
             app:srcCompat="@drawable/calendar" />
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/blackFav"
             android:layout_width="47dp"
             android:layout_height="43dp"
             android:layout_marginStart="220dp"

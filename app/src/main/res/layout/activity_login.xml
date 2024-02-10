@@ -25,7 +25,7 @@
 
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textInputEditText"
+        android:id="@+id/editTxtEmail"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="200dp"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnLogin"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="360dp"
         android:layout_height="wrap_content"

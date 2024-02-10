@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id ("androidx.navigation.safeargs")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -47,6 +48,25 @@ dependencies {
 
     //animation
     implementation ("com.airbnb.android:lottie:3.4.0")
+
+    //Retrofit
+
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.7.2")
+
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    //firebase
+    implementation("com.google.firebase:firebase-auth:22.3.1")
+    implementation("com.google.firebase:firebase-database:20.3.0")
+
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
+    implementation ("com.github.shobhitpuri:custom-google-signin-button:2.0.0")
+
+      //room
+    implementation ("androidx.room:room-runtime:2.6.1")
+    annotationProcessor ("androidx.room:room-compiler:2.6.1")
+
 
 
     testImplementation("junit:junit:4.13.2")
