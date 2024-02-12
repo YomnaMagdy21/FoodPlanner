@@ -5,6 +5,9 @@ import com.example.foodplanner.network.NetworkCallback;
 public interface MealRepository {
 
     public void getAllMeals(NetworkCallback networkCallback);
+    public void getAllCategories(NetworkCallback networkCallback);
+
+
 //    public void insertMeal(Meal meal);
 //    public void deleteMeal(Meal meal);
 }

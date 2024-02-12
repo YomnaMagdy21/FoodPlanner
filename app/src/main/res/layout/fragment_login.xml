@@ -62,13 +62,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="250dp"
-        android:backgroundTint="#CA4545"
+        android:backgroundTint="@color/red"
         android:fontFamily="sans-serif"
 
         android:inputType="text"
@@ -81,7 +80,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/googleLogo"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="100dp"
@@ -107,7 +106,7 @@
         android:layout_marginBottom="24dp"
         android:text="@string/or"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toTopOf="@+id/googleLogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -133,13 +132,12 @@
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toTopOf="@+id/textView7" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button4"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#CA4545"
+        android:backgroundTint="@color/red"
         android:inputType="text"
         android:text="@string/guest"
         android:textColor="@color/white"

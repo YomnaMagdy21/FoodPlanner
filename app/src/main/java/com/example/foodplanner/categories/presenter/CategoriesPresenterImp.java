@@ -19,7 +19,7 @@ public class CategoriesPresenterImp implements CategoriesPresenter, NetworkCallb
 
     @Override
     public void getCategories() {
-        _repo.getAllMeals(this);
+      //  _repo.getAllCategories(this);
     }
 
 //    @Override

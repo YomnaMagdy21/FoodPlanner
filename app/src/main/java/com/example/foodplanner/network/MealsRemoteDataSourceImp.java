@@ -33,14 +33,14 @@ public class MealsRemoteDataSourceImp {
         return client;
     }
 
-    public void makeNetworkCall(NetworkCallback networkCallback){
+    public void makeNetworkCall(NetworkCallback networkCallback) {
 
-        Call<MealResponse> call=mealService.getMeals();
+        Call<MealResponse> call = mealService.getMeals();
         call.enqueue(new Callback<MealResponse>() {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
                 networkCallback.onSuccessResult(response.body().meals);
-                Log.i(TAG, "onResponseeeeeee: "+response.body());
+                Log.i(TAG, "onResponse: " + response.body());
 
             }
 
@@ -50,6 +50,25 @@ public class MealsRemoteDataSourceImp {
 
             }
         });
+    }
+
+        public void categoryCall(NetworkCallback networkCallback){
+
+            Call<MealResponse> call=mealService.getCategories();
+            call.enqueue(new Callback<MealResponse>() {
+                @Override
+                public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                    networkCallback.onSuccessResult(response.body().meals);
+                    Log.i(TAG, "onResponse: "+response.body());
+
+                }
+
+                @Override
+                public void onFailure(Call<MealResponse> call, Throwable t) {
+                    networkCallback.onFailureResult(t.getMessage());
+
+                }
+            });
 
     }
 }

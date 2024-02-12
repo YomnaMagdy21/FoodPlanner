@@ -30,7 +30,14 @@ public class MealsRepositoryImp implements MealRepository{
 
     public void getAllMeals(NetworkCallback networkCallback){
         remoteSource.makeNetworkCall(networkCallback);
+
     }
+
+    public void getAllCategories(NetworkCallback networkCallback){
+        remoteSource.categoryCall(networkCallback);
+    }
+
+
 
 //    public void insertProduct(Meal product){
 //        localDataSource.insert(product);

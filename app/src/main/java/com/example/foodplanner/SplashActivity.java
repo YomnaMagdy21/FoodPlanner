@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.foodplanner.login.view.LoginActivity;
-import com.example.foodplanner.login.view.LoginFragment;
+
 
 import java.util.Timer;
 import java.util.TimerTask;

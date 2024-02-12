@@ -20,4 +20,9 @@
     <string name="small_signup">Sign up</string>
     <string name="categories">Categories</string>
     <string name="area">Area</string>
+    <string name="clientID">821240501293-ll8vpe1gv66ggm7eosa20tke8o0d0sdp.apps.googleusercontent.com</string>
+    <string name="ingradients">Ingradients</string>
+    <string name="directions">Directions</string>
+    <string name="add_plan">Add to Plan</string>
+    <string name="search">Search</string>
 </resources>
