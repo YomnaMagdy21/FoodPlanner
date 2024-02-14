@@ -1,5 +1,8 @@
 package com.example.foodplanner.area.presenter;
 
+import com.example.foodplanner.area.modelArea.AreaResponse;
+import com.example.foodplanner.area.view.AreaView;
+import com.example.foodplanner.categories.modelC.CategoryResponse;
 import com.example.foodplanner.categories.presenter.CategoriesPresenter;
 import com.example.foodplanner.home.view.AllMealView;
 import com.example.foodplanner.model.Meal;
@@ -8,18 +11,49 @@ import com.example.foodplanner.network.NetworkCallback;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+
 public class AreaPresenterImp implements AreaPresenter, NetworkCallback {
-    private AllMealView _view;
+    private AreaView _view;
     private MealRepository _repo;
 
-    public AreaPresenterImp(AllMealView _view, MealRepository _repo) {
+    public AreaPresenterImp(AreaView _view, MealRepository _repo) {
         this._view = _view;
         this._repo = _repo;
     }
 
     @Override
     public void getArea() {
-        _repo.getAllMeals();
+        Observable<AreaResponse> observable= _repo.getAllCountries();
+        observable
+                .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<AreaResponse>() {
+                            @Override
+                            public void onSubscribe(@NonNull Disposable d) {
+
+                            }
+
+                            @Override
+                            public void onNext(@NonNull AreaResponse areaResponse) {
+                                 _view.showCountries(areaResponse.getAreaList());
+                            }
+
+                            @Override
+                            public void onError(@NonNull Throwable e) {
+
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
+
+      //  _repo.getAllMeals();
     }
 
 //    @Override

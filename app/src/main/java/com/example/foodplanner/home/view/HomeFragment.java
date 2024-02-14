@@ -15,8 +15,10 @@ import android.view.ViewGroup;
 
 import com.example.foodplanner.MealDetails.view.MealDetailsActivity;
 import com.example.foodplanner.R;
+import com.example.foodplanner.area.modelArea.Area;
 import com.example.foodplanner.area.presenter.AreaPresenterImp;
 import com.example.foodplanner.area.view.AreaAdapter;
+import com.example.foodplanner.area.view.AreaView;
 import com.example.foodplanner.categories.modelC.Categories;
 import com.example.foodplanner.categories.presenter.CategoriesPresenter;
 import com.example.foodplanner.categories.presenter.CategoriesPresenterImp;
@@ -33,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements AllMealView, CategoriesView {
+public class HomeFragment extends Fragment implements AllMealView, CategoriesView, AreaView {
 
     RecyclerView recyclerView,recyclerViewCategories,recyclerViewArea;
     LinearLayoutManager linearLayoutManager ,linearLayoutManagerCategories,linearLayoutManagerArea;
@@ -119,6 +121,12 @@ public class HomeFragment extends Fragment implements AllMealView, CategoriesVie
     public void showCategories(List<Categories> categories) {
         categoriesAdapter.setList(categories);
         categoriesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showCountries(List<Area> areas) {
+        areaAdapter.setList(areas);
+       areaAdapter.notifyDataSetChanged();
     }
 
     @Override

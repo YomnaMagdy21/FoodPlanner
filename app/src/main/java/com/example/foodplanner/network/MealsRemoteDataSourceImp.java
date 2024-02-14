@@ -2,6 +2,7 @@ package com.example.foodplanner.network;
 
 import android.util.Log;
 
+import com.example.foodplanner.area.modelArea.AreaResponse;
 import com.example.foodplanner.categories.modelC.CategoryResponse;
 import com.example.foodplanner.model.MealResponse;
 
@@ -64,6 +65,11 @@ public class MealsRemoteDataSourceImp {
         Observable<CategoryResponse> categoriesObservable = mealService.getCategories();
         return categoriesObservable.subscribeOn(Schedulers.io());
 
+    }
+
+    public Observable<AreaResponse> areaCall(){
+        Observable<AreaResponse> areaObservable =mealService.getArea();
+        return areaObservable.subscribeOn(Schedulers.io());
     }
 
 }

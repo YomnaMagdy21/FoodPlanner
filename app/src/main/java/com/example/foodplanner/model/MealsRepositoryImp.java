@@ -2,6 +2,7 @@ package com.example.foodplanner.model;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.foodplanner.area.modelArea.AreaResponse;
 import com.example.foodplanner.categories.modelC.CategoryResponse;
 import com.example.foodplanner.database.MealLocalDataSourceImp;
 import com.example.foodplanner.network.MealsRemoteDataSourceImp;
@@ -40,6 +41,10 @@ public class MealsRepositoryImp implements MealRepository{
         return remoteSource.categoryCall();
     }
 
+    @Override
+    public Observable<AreaResponse> getAllCountries() {
+        return remoteSource.areaCall();
+    }
 
 
 //    public void insertProduct(Meal product){

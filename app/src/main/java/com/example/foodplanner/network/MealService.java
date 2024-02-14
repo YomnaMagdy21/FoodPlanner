@@ -1,5 +1,6 @@
 package com.example.foodplanner.network;
 
+import com.example.foodplanner.area.modelArea.AreaResponse;
 import com.example.foodplanner.categories.modelC.CategoryResponse;
 import com.example.foodplanner.model.MealResponse;
 
@@ -16,5 +17,5 @@ public interface MealService {
   Observable<CategoryResponse> getCategories();
 
   @GET("list.php?a=list")
-  Call<MealResponse> getArea();
+  Observable<AreaResponse> getArea();
 }
