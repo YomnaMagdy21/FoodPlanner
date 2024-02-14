@@ -1,4 +1,4 @@
-package com.example.foodplanner.area.view;
+package com.example.foodplanner.ingredients.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,69 +14,69 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
-import com.example.foodplanner.area.modelArea.Area;
 import com.example.foodplanner.categories.modelC.Categories;
 import com.example.foodplanner.categories.view.CategoriesAdapter;
-import com.example.foodplanner.home.view.AllMealView;
-import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.categories.view.CategoriesView;
+import com.example.foodplanner.ingredients.modelIngredients.Ingredients;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
+public class IngredientAdapter  extends RecyclerView.Adapter<IngredientAdapter.ViewHolder> {
     Context context;
-    List<Area> areas;
-    List<Area> areaList;
+    List<Ingredients> categories;
+    List<Ingredients> categoriesList;
+
     //    // OnAllProductClickListener listener;
-    AreaView listener;
+    IngredientView listener;
 
 
-    public AreaAdapter(Context context, List<Area> _areas,AreaView _listener) {
+
+    public IngredientAdapter(Context context, List<Ingredients> _meals,IngredientView _listener) {
         this.context = context;
-        this.areas = _areas;
+        this.categories = _meals;
         this.listener=_listener;
-        this.areas=new ArrayList<Area>();
-        areaList=new ArrayList<>();
+        this.categories=new ArrayList<Ingredients>();
+        categoriesList=new ArrayList<>();
     }
 
-    public void setList(List<Area> updateMeals){
-        this.areas=updateMeals;
-        areaList.addAll(updateMeals);
-       // notifyDataSetChanged();
+    public void setList(List<Ingredients> updateMeals){
+        this.categories=updateMeals;
+        categoriesList.addAll(updateMeals);
+        // notifyDataSetChanged();
 
     }
 
     @NonNull
     @Override
-    public AreaAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public IngredientAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view=inflater.inflate(R.layout.category_item,parent,false);
-        AreaAdapter.ViewHolder viewHolder=new AreaAdapter.ViewHolder(view);
+        IngredientAdapter.ViewHolder viewHolder=new IngredientAdapter.ViewHolder(view);
         return viewHolder;
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AreaAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull IngredientAdapter.ViewHolder holder, int position) {
 
-        Area area = areas.get(position);
+        Ingredients meal = categories.get(position);
 
 
 //         holder.fav.setImageResource(R.drawable.black_fav);
 //        holder.calender.setImageResource(R.drawable.calendar);
-//        String imageUrl = area.getStrCategoryThumb();
-//        if (imageUrl != null && !imageUrl.isEmpty()) {
-//            Glide.with(context)
-//                    .load(imageUrl)
-//                    .into(holder.imgCat);
-//        } else {
-//            Glide.with(context)
-//                    .load(R.drawable.load)
-//                    .into(holder.imgCat);
-//            // Alternatively, you can hide the ImageView
-//            // holder.imgCat.setVisibility(View.GONE);
-//        }
-        holder.mealName.setText(area.getStrArea());
+        String imageUrl = meal.getStrMealThumb();
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Glide.with(context)
+                    .load(imageUrl)
+                    .into(holder.imgCat);
+        } else {
+            Glide.with(context)
+                    .load(R.drawable.load)
+                    .into(holder.imgCat);
+            // Alternatively, you can hide the ImageView
+            // holder.imgCat.setVisibility(View.GONE);
+        }            holder.mealName.setText(meal.getStrMeal());
 //            holder.cardView.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -91,7 +91,7 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return areas.size();
+        return categories.size();
     }
 
     public Filter getFilter() {
@@ -101,13 +101,13 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
     Filter filter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<Area> filteredList = new ArrayList<>();
+            List<Ingredients> filteredList = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(areaList); // Add all meals if the search query is empty
+                filteredList.addAll(categoriesList); // Add all meals if the search query is empty
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
-                for (Area meal : areaList) {
-                    if (meal.getStrArea().toLowerCase().contains(filterPattern)) {
+                for (Ingredients meal : categoriesList) {
+                    if (meal.getStrMeal().toLowerCase().contains(filterPattern)) {
                         filteredList.add(meal); // Add meal to filtered list if its name contains the search query
                     }
                 }
@@ -119,8 +119,8 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            areas.clear(); // Clear current list of meals
-            areas.addAll((List<Area>) results.values); // Add filtered list to current list
+            categories.clear(); // Clear current list of meals
+            categories.addAll((List<Ingredients>) results.values); // Add filtered list to current list
             notifyDataSetChanged(); // Notify adapter of data change
         }
     };

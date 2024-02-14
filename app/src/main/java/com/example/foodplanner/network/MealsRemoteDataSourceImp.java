@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.foodplanner.area.modelArea.AreaResponse;
 import com.example.foodplanner.categories.modelC.CategoryResponse;
+import com.example.foodplanner.ingredients.modelIngredients.IngredientResponse;
 import com.example.foodplanner.model.MealResponse;
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
@@ -69,6 +70,10 @@ public class MealsRemoteDataSourceImp {
 
     public Observable<AreaResponse> areaCall(){
         Observable<AreaResponse> areaObservable =mealService.getArea();
+        return areaObservable.subscribeOn(Schedulers.io());
+    }
+    public Observable<IngredientResponse> ingredientCall(){
+        Observable<IngredientResponse> areaObservable =mealService.getIngredients();
         return areaObservable.subscribeOn(Schedulers.io());
     }
 

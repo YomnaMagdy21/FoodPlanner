@@ -25,4 +25,8 @@
     <string name="directions">Directions</string>
     <string name="add_plan">Add to Plan</string>
     <string name="search">Search</string>
+    <string name="search_meal">Search by Meal</string>
+    <string name="search_categories">Search by Categories</string>
+    <string name="search_area">Search by Countries</string>
+    <string name="search_ingradients">Search by Ingradients</string>
 </resources>

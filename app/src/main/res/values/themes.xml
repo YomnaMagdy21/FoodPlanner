@@ -6,5 +6,10 @@
         <item name="colorAccent">@color/red</item>
     </style>
 
-    <style name="Theme.FoodPlanner" parent="Base.Theme.FoodPlanner" />
+    <style name="Theme.FoodPlanner" parent="Base.Theme.FoodPlanner" >
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryDark">@color/darkRed</item>
+        <item name="colorAccent">@color/bink</item>
+
+    </style>
 </resources>

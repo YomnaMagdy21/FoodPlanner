@@ -27,7 +27,7 @@ public class PlanFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       
+
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,21 +25,25 @@ import java.util.List;
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
         Context context;
         List<Categories> categories;
+    List<Categories> categoriesList;
 
 //    // OnAllProductClickListener listener;
-        AllMealView listener;
+        CategoriesView listener;
 
 
-    public CategoriesAdapter(Context context, List<Categories> _meals,AllMealView _listener) {
+
+    public CategoriesAdapter(Context context, List<Categories> _meals,CategoriesView _listener) {
             this.context = context;
             this.categories = _meals;
             this.listener=_listener;
-        categories=new ArrayList<Categories>();
+        this.categories=new ArrayList<Categories>();
+        categoriesList=new ArrayList<>();
         }
 
         public void setList(List<Categories> updateMeals){
             this.categories=updateMeals;
-            notifyDataSetChanged();
+            categoriesList.addAll(updateMeals);
+           // notifyDataSetChanged();
 
         }
 
@@ -89,7 +94,39 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
             return categories.size();
         }
 
-        class ViewHolder extends RecyclerView.ViewHolder {
+    public Filter getFilter() {
+        return filter;
+    }
+
+    Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Categories> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(categoriesList); // Add all meals if the search query is empty
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Categories meal : categoriesList) {
+                    if (meal.getStrCategory().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(meal); // Add meal to filtered list if its name contains the search query
+                    }
+                }
+            }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            categories.clear(); // Clear current list of meals
+            categories.addAll((List<Categories>) results.values); // Add filtered list to current list
+            notifyDataSetChanged(); // Notify adapter of data change
+        }
+    };
+
+
+    class ViewHolder extends RecyclerView.ViewHolder {
 
             ImageView imgCat,fav,calender;
 
