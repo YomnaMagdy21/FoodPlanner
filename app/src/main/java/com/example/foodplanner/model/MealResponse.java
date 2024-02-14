@@ -10,9 +10,9 @@ public class MealResponse{
 //      this.meals = meals;
 //   }
 //
-//   public List<Meal> getMeals() {
-//      return meals;
-//   }
+   public List<Meal> getMeals() {
+      return meals;
+   }
 //
 //   public void setMeals(List<Meal> meals) {
 //      this.meals = meals;

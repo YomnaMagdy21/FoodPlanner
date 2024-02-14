@@ -17,9 +17,11 @@ import com.example.foodplanner.MealDetails.view.MealDetailsActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.area.presenter.AreaPresenterImp;
 import com.example.foodplanner.area.view.AreaAdapter;
+import com.example.foodplanner.categories.modelC.Categories;
 import com.example.foodplanner.categories.presenter.CategoriesPresenter;
 import com.example.foodplanner.categories.presenter.CategoriesPresenterImp;
 import com.example.foodplanner.categories.view.CategoriesAdapter;
+import com.example.foodplanner.categories.view.CategoriesView;
 import com.example.foodplanner.database.MealLocalDataSourceImp;
 import com.example.foodplanner.home.presenter.AllMealPresenter;
 import com.example.foodplanner.home.presenter.AllMealsPresenterImp;
@@ -31,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements AllMealView {
+public class HomeFragment extends Fragment implements AllMealView, CategoriesView {
 
     RecyclerView recyclerView,recyclerViewCategories,recyclerViewArea;
     LinearLayoutManager linearLayoutManager ,linearLayoutManagerCategories,linearLayoutManagerArea;
@@ -108,10 +110,15 @@ public class HomeFragment extends Fragment implements AllMealView {
     public void showData(List<Meal> meals) {
         homeAdapter.setList(meals);
         homeAdapter.notifyDataSetChanged();
-        categoriesAdapter.setList(meals);
+
+//        areaAdapter.setList(meals);
+//        areaAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showCategories(List<Categories> categories) {
+        categoriesAdapter.setList(categories);
         categoriesAdapter.notifyDataSetChanged();
-        areaAdapter.setList(meals);
-        areaAdapter.notifyDataSetChanged();
     }
 
     @Override

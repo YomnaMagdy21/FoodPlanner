@@ -1,5 +1,6 @@
 package com.example.foodplanner.home.view;
 
+import com.example.foodplanner.categories.modelC.Categories;
 import com.example.foodplanner.model.Meal;
 
 import java.util.List;

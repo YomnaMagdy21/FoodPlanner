@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
+import com.example.foodplanner.categories.modelC.Categories;
 import com.example.foodplanner.categories.view.CategoriesAdapter;
 import com.example.foodplanner.home.view.AllMealView;
 import com.example.foodplanner.model.Meal;
@@ -22,20 +23,20 @@ import java.util.List;
 
 public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
     Context context;
-    List<Meal> meals;
+    List<Categories> meals;
 
     //    // OnAllProductClickListener listener;
     AllMealView listener;
 
 
-    public AreaAdapter(Context context, List<Meal> _meals,AllMealView _listener) {
+    public AreaAdapter(Context context, List<Categories> _meals,AllMealView _listener) {
         this.context = context;
         this.meals = _meals;
         this.listener=_listener;
-        meals=new ArrayList<Meal>();
+        meals=new ArrayList<Categories>();
     }
 
-    public void setList(List<Meal> updateMeals){
+    public void setList(List<Categories> updateMeals){
         this.meals=updateMeals;
         notifyDataSetChanged();
 
@@ -54,7 +55,7 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull AreaAdapter.ViewHolder holder, int position) {
 
-        Meal meal = meals.get(position);
+        Categories meal = meals.get(position);
 
 
 //         holder.fav.setImageResource(R.drawable.black_fav);

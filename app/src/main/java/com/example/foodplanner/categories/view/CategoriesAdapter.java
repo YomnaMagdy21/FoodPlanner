@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
+import com.example.foodplanner.categories.modelC.Categories;
 import com.example.foodplanner.home.view.AllMealView;
 import com.example.foodplanner.home.view.HomeAdapter;
 import com.example.foodplanner.model.Meal;
@@ -22,21 +23,21 @@ import java.util.List;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
         Context context;
-        List<Meal> meals;
+        List<Categories> categories;
 
 //    // OnAllProductClickListener listener;
         AllMealView listener;
 
 
-    public CategoriesAdapter(Context context, List<Meal> _meals,AllMealView _listener) {
+    public CategoriesAdapter(Context context, List<Categories> _meals,AllMealView _listener) {
             this.context = context;
-            this.meals = _meals;
+            this.categories = _meals;
             this.listener=_listener;
-            meals=new ArrayList<Meal>();
+        categories=new ArrayList<Categories>();
         }
 
-        public void setList(List<Meal> updateMeals){
-            this.meals=updateMeals;
+        public void setList(List<Categories> updateMeals){
+            this.categories=updateMeals;
             notifyDataSetChanged();
 
         }
@@ -54,7 +55,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         @Override
         public void onBindViewHolder(@NonNull CategoriesAdapter.ViewHolder holder, int position) {
 
-            Meal meal = meals.get(position);
+            Categories meal = categories.get(position);
 
 
 //         holder.fav.setImageResource(R.drawable.black_fav);
@@ -85,7 +86,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
         @Override
         public int getItemCount() {
-            return meals.size();
+            return categories.size();
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {

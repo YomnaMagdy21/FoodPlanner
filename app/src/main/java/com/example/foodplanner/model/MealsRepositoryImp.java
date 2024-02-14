@@ -2,11 +2,14 @@ package com.example.foodplanner.model;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.foodplanner.categories.modelC.CategoryResponse;
 import com.example.foodplanner.database.MealLocalDataSourceImp;
 import com.example.foodplanner.network.MealsRemoteDataSourceImp;
-import com.example.foodplanner.network.NetworkCallback;
+
 
 import java.util.List;
+
+import io.reactivex.rxjava3.core.Observable;
 
 public class MealsRepositoryImp implements MealRepository{
     MealsRemoteDataSourceImp remoteSource;
@@ -28,13 +31,13 @@ public class MealsRepositoryImp implements MealRepository{
 
    // public LiveData<List<Meal>> getStoredProducts(){return localDataSource.getAllStoredProducts();}
 
-    public void getAllMeals(NetworkCallback networkCallback){
-        remoteSource.makeNetworkCall(networkCallback);
+    public Observable<MealResponse> getAllMeals(){//NetworkCallback networkCallback
+        return remoteSource.makeNetworkCall();
 
     }
 
-    public void getAllCategories(NetworkCallback networkCallback){
-        remoteSource.categoryCall(networkCallback);
+    public Observable<CategoryResponse>  getAllCategories(){
+        return remoteSource.categoryCall();
     }
 
 

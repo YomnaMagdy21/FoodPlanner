@@ -19,7 +19,7 @@ public class AreaPresenterImp implements AreaPresenter, NetworkCallback {
 
     @Override
     public void getArea() {
-        _repo.getAllMeals(this);
+        _repo.getAllMeals();
     }
 
 //    @Override
@@ -27,15 +27,15 @@ public class AreaPresenterImp implements AreaPresenter, NetworkCallback {
 //        _repo.insertProduct(product);
 //    }
 
-    @Override
-    public void onSuccessResult(List<Meal> products) {
-        _view.showData(products);
-
-    }
-
-    @Override
-    public void onFailureResult(String errorMsg) {
-        _view.showErrMsg(errorMsg);
-
-    }
+//    @Override
+//    public void onSuccessResult(List<Meal> products) {
+//        _view.showData(products);
+//
+//    }
+//
+//    @Override
+//    public void onFailureResult(String errorMsg) {
+//        _view.showErrMsg(errorMsg);
+//
+//    }
 }

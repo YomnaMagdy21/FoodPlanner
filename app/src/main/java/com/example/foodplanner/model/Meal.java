@@ -48,9 +48,7 @@ public class Meal {
     String strMeasure20;
     String strInstructions;
     String strYoutube;
-    String idCategory;
-    String strCategory;
-    String strCategoryThumb;
+
 
     public  Meal(){
 
@@ -72,30 +70,6 @@ public class Meal {
         this.strYoutube = strYoutube;
     }
 
-
-    public String getIdCategory() {
-        return idCategory;
-    }
-
-    public void setIdCategory(String idCategory) {
-        this.idCategory = idCategory;
-    }
-
-    public String getStrCategory() {
-        return strCategory;
-    }
-
-    public void setStrCategory(String strCategory) {
-        this.strCategory = strCategory;
-    }
-
-    public String getStrCategoryThumb() {
-        return strCategoryThumb;
-    }
-
-    public void setStrCategoryThumb(String strCategoryThumb) {
-        this.strCategoryThumb = strCategoryThumb;
-    }
 
     public String getStrMeal() {
         return strMeal;
