@@ -49,6 +49,8 @@ public class Meal {
     String strInstructions;
     String strYoutube;
 
+    String ingredient;
+
 
     public  Meal(){
 
@@ -437,5 +439,13 @@ public class Meal {
 
     public void setStrYoutube(String strYoutube) {
         this.strYoutube = strYoutube;
+    }
+
+    public String getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(String ingredient) {
+        this.ingredient = ingredient;
     }
 }

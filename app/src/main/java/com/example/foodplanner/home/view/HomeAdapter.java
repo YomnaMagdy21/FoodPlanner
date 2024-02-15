@@ -34,7 +34,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
 //    // OnAllProductClickListener listener;
     AllMealView listener;
-    MealDetailsActivity mealDetailsActivity;
 
 
     public HomeAdapter(Context context, List<Meal> _products,AllMealView _listener) {
@@ -80,8 +79,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                 Intent myIntent =new Intent(context, MealDetailsActivity.class);
                 myIntent.putExtra("selectedMeal",meal.getStrMeal());
                 context.startActivity(myIntent);
-               // mealDetailsActivity.showMealDetails(meal);
-
             }
         });
 

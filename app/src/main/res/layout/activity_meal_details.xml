@@ -11,8 +11,10 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,11 +26,11 @@
                 android:id="@+id/videoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+                app:layout_constraintTop_toBottomOf="@+id/steps" />
 
             <ImageView
                 android:id="@+id/mealImg"
@@ -51,13 +53,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nameMeal" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <TextView
                 android:id="@+id/textView14"
@@ -69,15 +64,7 @@
                 android:textSize="28dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
             <TextView
                 android:id="@+id/nameMeal"
@@ -106,7 +93,6 @@
                 android:id="@+id/button3"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="250dp"
                 android:backgroundTint="@color/red"
                 android:inputType="text"
                 android:text="@string/add_plan"
@@ -114,7 +100,221 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.493"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+                app:layout_constraintTop_toBottomOf="@+id/videoView" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+                <TextView
+                    android:id="@+id/strIngredients"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.184"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/steps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+
+            <!--            <TextView-->
+<!--                android:id="@+id/textView18"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView9"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/textView9"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView9" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView19"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView18"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/textView18"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView18" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView20"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView19"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/textView19"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView19" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView21"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView20"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/textView20"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView20" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView22"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView21"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/textView21"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView21" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView23"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView22"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/textView22"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView22" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView24"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView23"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/textView23"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView23" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView25"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView26"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/textView26"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView26" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView26"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView24"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/textView24"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView24" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView27"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="120dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView13" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView28"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView27"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/textView27"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView27" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView29"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView28"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/textView28"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView28" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView30"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView29"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/textView29"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView29" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView31"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView30"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/textView30"-->
+<!--                tools:layout_editor_absoluteY="549dp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView32"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="TextView"-->
+<!--                tools:layout_editor_absoluteX="246dp"-->
+<!--                tools:layout_editor_absoluteY="604dp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView33"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="TextView"-->
+<!--                tools:layout_editor_absoluteX="225dp"-->
+<!--                tools:layout_editor_absoluteY="635dp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView34"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="TextView"-->
+<!--                tools:layout_editor_absoluteX="139dp"-->
+<!--                tools:layout_editor_absoluteY="593dp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView35"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="TextView"-->
+<!--                tools:layout_editor_absoluteX="129dp"-->
+<!--                tools:layout_editor_absoluteY="648dp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView36"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="TextView"-->
+<!--                tools:layout_editor_absoluteX="171dp"-->
+<!--                tools:layout_editor_absoluteY="662dp" />-->
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -29,4 +29,11 @@
     <string name="search_categories">Search by Categories</string>
     <string name="search_area">Search by Countries</string>
     <string name="search_ingradients">Search by Ingradients</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wedensday">Wedensday</string>
+    <string name="thuresday">Thuresday</string>
+    <string name="friday">Friday</string>
+    <string name="saterday">Saterday</string>
 </resources>

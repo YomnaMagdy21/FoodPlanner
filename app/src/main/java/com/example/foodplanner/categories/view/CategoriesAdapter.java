@@ -1,6 +1,7 @@
 package com.example.foodplanner.categories.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.MealDetails.view.MealDetailsActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.categories.modelC.Categories;
 import com.example.foodplanner.home.view.AllMealView;
@@ -77,12 +79,14 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                 // Alternatively, you can hide the ImageView
                 // holder.imgCat.setVisibility(View.GONE);
             }            holder.mealName.setText(meal.getStrCategory());
-//            holder.cardView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    listener.navigateToDetails(meal);
-//                }
-//            });
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Intent myIntent =new Intent(context, MealDetailsActivity.class);
+//                    myIntent.putExtra("selectedMeal",meal.getStrMeal());
+//                    context.startActivity(myIntent);
+                }
+            });
 
 
 

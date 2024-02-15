@@ -50,7 +50,7 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
     @Override
     public AreaAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view=inflater.inflate(R.layout.category_item,parent,false);
+        View view=inflater.inflate(R.layout.area_item,parent,false);
         AreaAdapter.ViewHolder viewHolder=new AreaAdapter.ViewHolder(view);
         return viewHolder;
 

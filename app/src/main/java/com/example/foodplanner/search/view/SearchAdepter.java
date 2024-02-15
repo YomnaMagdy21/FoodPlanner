@@ -1,6 +1,7 @@
 package com.example.foodplanner.search.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.MealDetails.view.MealDetailsActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.home.view.AllMealView;
 import com.example.foodplanner.home.view.HomeAdapter;
@@ -67,7 +69,9 @@ public class SearchAdepter extends RecyclerView.Adapter<SearchAdepter.ViewHolder
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.navigateToDetails(meal);
+                    Intent myIntent =new Intent(context, MealDetailsActivity.class);
+                    myIntent.putExtra("selectedMeal",meal.getStrMeal());
+                    context.startActivity(myIntent);
                 }
             });
 
