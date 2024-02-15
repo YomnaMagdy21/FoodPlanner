@@ -12,8 +12,13 @@ import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.MealDetails.presenter.DetailsPresenter;
+import com.example.foodplanner.MealDetails.presenter.DetailsPresenterImp;
 import com.example.foodplanner.R;
+import com.example.foodplanner.categories.presenter.CategoriesPresenterImp;
+import com.example.foodplanner.database.MealLocalDataSourceImp;
 import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.model.MealsRepositoryImp;
+import com.example.foodplanner.network.MealsRemoteDataSourceImp;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -54,8 +59,14 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
         if(bundle!=null) {
             nameOfMeal = bundle.getString("selectedMeal");
             name.setText(nameOfMeal);
-           // showMealDetails(meals);
+
+            detailsPresenter= new DetailsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance()));
+
             detailsPresenter.getDetails(nameOfMeal);
+            //showMealDetails(meal);
+//            country.setText(meal.getStrArea());
+//            Glide.with(this).load(meal.getStrMealThumb()).into(imgMeal);
+
 
 
         }
@@ -71,27 +82,35 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
 //        MediaController mediaController=new MediaController(this);
 //        video.setMediaController(mediaController);
 //        mediaController.setAnchorView(video);
-//        video.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-//            @Override
-//            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-//                super.onReady(youTubePlayer);
-//
-//                youTubePlayer.loadVideo(videoID,0);
-//            }
-//        });
+
 
 
     }
 
     public void showMealDetails(List<Meal> meals){
+        meal = meals.get(0);
         if(meal!= null) {
-            meal = meals.get(0);
+
             name.setText(nameOfMeal);
             country.setText(meal.getStrArea());
             Glide.with(this).load(meal.getStrMealThumb()).into(imgMeal);
+            String youtubeLink = meal.getStrYoutube();
+            if (youtubeLink != null && !youtubeLink.isEmpty()) {
+                Uri uri = Uri.parse(youtubeLink);
+                String videoId = uri.getQueryParameter("v");
+
+                video.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                    @Override
+                    public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                        super.onReady(youTubePlayer);
+                        if (videoId != null && !videoId.isEmpty()) {
+                            youTubePlayer.loadVideo(videoId, 0);
+                        }
+                    }
+                });
+            }
+
         }
-
-
 
     }
 }

@@ -6,6 +6,7 @@ import com.example.foodplanner.MealDetails.view.DetailsView;
 import com.example.foodplanner.categories.modelC.CategoryResponse;
 import com.example.foodplanner.categories.view.CategoriesView;
 import com.example.foodplanner.model.MealRepository;
+import com.example.foodplanner.model.MealResponse;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -23,7 +24,33 @@ public class DetailsPresenterImp implements DetailsPresenter {
 
     @Override
     public void getDetails(String name) {
-        _repo.getMealByName(name);
+        Observable<MealResponse> observable= _repo.getMealByName(name);
+
+        observable
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MealResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull MealResponse categoryResponse) {
+                        _view.showMealDetails(categoryResponse.getMeals());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 
 
