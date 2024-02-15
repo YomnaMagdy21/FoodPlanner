@@ -57,6 +57,8 @@ public class CategoriesPresenterImp implements CategoriesPresenter, NetworkCallb
        // _repo.getAllCategories();
     }
 
+
+
 //    @Override
 //    public void addToFav(Meal product) {
 //        _repo.insertProduct(product);

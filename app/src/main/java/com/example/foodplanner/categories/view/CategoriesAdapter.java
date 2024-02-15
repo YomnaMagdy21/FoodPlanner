@@ -19,6 +19,7 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.categories.modelC.Categories;
 import com.example.foodplanner.home.view.AllMealView;
 import com.example.foodplanner.home.view.HomeAdapter;
+import com.example.foodplanner.meal.view.MealActivity;
 import com.example.foodplanner.model.Meal;
 
 import java.util.ArrayList;
@@ -82,9 +83,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent myIntent =new Intent(context, MealDetailsActivity.class);
-//                    myIntent.putExtra("selectedMeal",meal.getStrMeal());
-//                    context.startActivity(myIntent);
+                    Intent myIntent =new Intent(context, MealActivity.class);
+                    myIntent.putExtra("Name",meal.getStrCategory());
+                    context.startActivity(myIntent);
                 }
             });
 
@@ -146,7 +147,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                 mealName = itemView.findViewById(R.id.nameMealCategories);
 //            fav = itemView.findViewById(R.id.blackFav);
 //            calender = itemView.findViewById(R.id.calender);
-             //   cardView=itemView.findViewById(R.id.cardView);
+               cardView=itemView.findViewById(R.id.cardViewCat);
 
 
             }

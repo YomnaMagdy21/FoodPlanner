@@ -15,6 +15,8 @@ public interface MealRepository {
     public Observable<AreaResponse> getAllCountries();
     public Observable<IngredientResponse> getAllIngredients();
     public  Observable<MealResponse> getMealByName(String name);
+    public Observable<MealResponse> getMealByCategory(String name);
+    public Observable<MealResponse> getMealByArea(String name);
 
 
 //    public void insertMeal(Meal meal);

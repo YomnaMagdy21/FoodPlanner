@@ -26,4 +26,10 @@ public interface MealService {
 
   @GET("search.php")
   Observable<MealResponse> getMealByName(@Query("s") String name);
+
+  @GET("filter.php?c")
+  Observable<MealResponse> getMealByCategory(@Query("c") String name);
+
+  @GET("filter.php?a")
+  Observable<MealResponse> getMealByArea(@Query("a") String name);
 }
