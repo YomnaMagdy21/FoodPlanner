@@ -24,14 +24,14 @@
                 android:id="@+id/videoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/button3"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/mealImg"
                 android:layout_width="414dp"
                 android:layout_height="237dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
                 android:textSize="28dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                app:layout_constraintTop_toBottomOf="@+id/nameMeal" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -80,7 +80,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/nameMeal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="76dp"
@@ -88,24 +88,25 @@
                 android:text="TextView"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                app:layout_constraintTop_toBottomOf="@+id/mealImg" />
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/countryName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="104dp"
                 android:text="TextView"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView17"
-                app:layout_constraintStart_toEndOf="@+id/textView17"
-                app:layout_constraintTop_toTopOf="@+id/textView17"
+                app:layout_constraintBottom_toBottomOf="@+id/nameMeal"
+                app:layout_constraintStart_toEndOf="@+id/nameMeal"
+                app:layout_constraintTop_toTopOf="@+id/nameMeal"
                 app:layout_constraintVertical_bias="0.0" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button3"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="250dp"
                 android:backgroundTint="@color/red"
                 android:inputType="text"
                 android:text="@string/add_plan"
@@ -113,7 +114,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.493"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="1028dp" />
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

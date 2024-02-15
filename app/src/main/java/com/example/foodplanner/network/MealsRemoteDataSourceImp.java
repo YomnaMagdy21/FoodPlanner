@@ -76,5 +76,9 @@ public class MealsRemoteDataSourceImp {
         Observable<IngredientResponse> areaObservable =mealService.getIngredients();
         return areaObservable.subscribeOn(Schedulers.io());
     }
+    public Observable<MealResponse> getMealByName(String name){
+        Observable<MealResponse> areaObservable =mealService.getMealByName(name);
+        return areaObservable.subscribeOn(Schedulers.io());
+    }
 
 }

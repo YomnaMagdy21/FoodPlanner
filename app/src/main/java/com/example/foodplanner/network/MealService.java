@@ -8,6 +8,7 @@ import com.example.foodplanner.model.MealResponse;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface MealService {
 
@@ -22,4 +23,7 @@ public interface MealService {
 
   @GET("filter.php?i")
   Observable<IngredientResponse> getIngredients();
+
+  @GET("search.php")
+  Observable<MealResponse> getMealByName(@Query("s") String name);
 }

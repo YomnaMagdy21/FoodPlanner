@@ -82,6 +82,8 @@ public class HomeFragment extends Fragment implements AllMealView, CategoriesVie
         recyclerView.setAdapter(homeAdapter);
         allMealPresenter.getMeals();
 
+
+
         linearLayoutManagerCategories=new LinearLayoutManager(view.getContext());
         linearLayoutManagerCategories.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewCategories.setLayoutManager(linearLayoutManagerCategories);
@@ -104,6 +106,8 @@ public class HomeFragment extends Fragment implements AllMealView, CategoriesVie
 
         return view;
     }
+
+
 
 
 
@@ -140,7 +144,8 @@ public class HomeFragment extends Fragment implements AllMealView, CategoriesVie
 
     @Override
     public void navigateToDetails(Meal meal) {
-       // startActivity(new Intent(getContext(), MealDetailsActivity.class));
+        startActivity(new Intent(getContext(), MealDetailsActivity.class));
+
 
     }
 }

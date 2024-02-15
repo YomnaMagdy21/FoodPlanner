@@ -3,6 +3,8 @@ package com.example.foodplanner.home.view;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.MealDetails.view.MealDetailsActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.model.Meal;
 
@@ -69,7 +72,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.navigateToDetails(meal);
+                //listener.navigateToDetails(meal);
+//                Bundle bundle = new Bundle();
+//                bundle.putParcelable("selectedMeal", (Parcelable) meal);
+
+                Intent myIntent =new Intent(context, MealDetailsActivity.class);
+                myIntent.putExtra("selectedMeal",meal.getStrMeal());
+                context.startActivity(myIntent);
             }
         });
 

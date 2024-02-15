@@ -52,6 +52,11 @@ public class MealsRepositoryImp implements MealRepository{
         return remoteSource.ingredientCall();
     }
 
+    @Override
+    public Observable<MealResponse> getMealByName(String name) {
+        return remoteSource.getMealByName(name);
+    }
+
 
 //    public void insertProduct(Meal product){
 //        localDataSource.insert(product);
