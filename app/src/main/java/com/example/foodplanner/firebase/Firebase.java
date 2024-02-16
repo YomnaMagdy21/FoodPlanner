@@ -2,6 +2,7 @@ package com.example.foodplanner.firebase;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -22,6 +23,15 @@ import java.util.List;
 
 public class Firebase {
 
+    private static Firebase firebaseInstance;
+
+    public static Firebase getInstance() {
+        if (firebaseInstance == null) {
+            firebaseInstance = new Firebase();
+        }
+        return firebaseInstance;
+    }
+
 //    GoogleSignInClient mGoogleSignInClient;
 //
 //
@@ -36,40 +46,61 @@ public class Firebase {
 private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
     List<Meal> mealList;
 
-    public void syncFavorites(Meal favoriteMeals) {
+    public void syncFavorites(Meal favoriteMeals,Context context) {
        mealList=new ArrayList<Meal>();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String userId = user.getUid();
-            DatabaseReference favoritesRef = databaseRef.child("Favorite");
-            favoritesRef.child(userId).child("strMeal").setValue(favoriteMeals.getStrMeal())
+            DatabaseReference favoritesRef = databaseRef.child("Client").child(userId);
+            favoritesRef.child("favorites").child(favoriteMeals.getStrMeal()).setValue(favoriteMeals)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
+                                    Log.e("Firebase", "Added to favorite successfully ");
 
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.e("FirebaseSyncManager", "Failed to clear existing favorites: " + e.getMessage());
+                            Log.e("Firebase", "Failed to add favorites: " + e.getMessage());
 
                         }
                     });
 
-            // Clear existing favorites
-//            favoritesRef.removeValue()
-//                    .addOnSuccessListener(aVoid -> {
-//                        // Add new favorites
-//                        for (Meal meal : mealList) {
-//                            String mealId = favoritesRef.push().getKey(); // Generate a unique key
-//                            favoritesRef.child(favoriteMeals.getStrMeal()).setValue(favoriteMeals);
-//                        }
-//                    })
-//                    .addOnFailureListener(e -> {
-//                        // Handle failure
-//                        Log.e("FirebaseSyncManager", "Failed to clear existing favorites: " + e.getMessage());
-//                    });
+
+
+
+
+        }
+        else {
+            Toast.makeText(context, "Guest users can't add to favorite", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void removeMealFromFav(Meal favoriteMeals) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            DatabaseReference favoritesRef = databaseRef.child("Client").child(userId);
+            favoritesRef.child("favorites").child(favoriteMeals.getStrMeal()).removeValue()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.e("Firebase", "Remove from favorite successfully ");
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e("Firebase", "Failed to remove favorites: " + e.getMessage());
+
+                        }
+                    });
+
+        }
+    }
+
+    public void showFavFromFirease(){
+
+    }
 }
-           // favoritesRef.child(favoriteMeals.getStrMeal()).setValue(favoriteMeals)

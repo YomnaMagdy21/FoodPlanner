@@ -82,7 +82,7 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
             nameOfMeal = bundle.getString("selectedMeal");
             name.setText(nameOfMeal);
 
-            detailsPresenter= new DetailsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(this)));
+            detailsPresenter= new DetailsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(this)),this);
 
             detailsPresenter.getDetails(nameOfMeal);
             //showMealDetails(meal);
@@ -120,7 +120,13 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
                 @Override
                 public void onClick(View v) {
                     fav.setImageResource(R.drawable.red_fav);
-                    detailsPresenter.addToFav(meal);
+                    if (detailsPresenter != null) {
+                        detailsPresenter.addToFav(meal);
+                    } else {
+                        Log.e("YourClassName", "DetailsPresenterImp object is null!");
+                    }
+
+
                 }
             });
             ingredients.append(meal.getStrIngredient1()+" \n"+meal.getStrIngredient2()+"\n");

@@ -1,6 +1,7 @@
 package com.example.foodplanner.favmeal.presenter;
 
 import com.example.foodplanner.favmeal.view.FavoriteView;
+import com.example.foodplanner.firebase.Firebase;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.MealRepository;
 
@@ -17,18 +18,21 @@ public class FavoritePresenterImp implements FavoritePresenter{
     private FavoriteView _view;
     private MealRepository _repo;
     Flowable<List<Meal>> favProducts;
+    Firebase firebase;
 
 
     public FavoritePresenterImp(FavoriteView _view, MealRepository _repo) {
         this._view = _view;
         this._repo = _repo;
+        firebase=new Firebase();
 
     }
 
 
     @Override
-    public void removeFromFav(Meal product) {
-        _repo.deleteMeal(product);
+    public void removeFromFav(Meal meal) {
+        _repo.deleteMeal(meal);
+        firebase.removeMealFromFav(meal);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.example.foodplanner.MealDetails.presenter;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import com.example.foodplanner.MealDetails.view.DetailsView;
@@ -22,9 +24,12 @@ public class DetailsPresenterImp implements DetailsPresenter {
     DetailsView _view;
     MealRepository _repo;
     Firebase firebase;
-    public DetailsPresenterImp(DetailsView _view, MealRepository _repo) {
+    Context context;
+    public DetailsPresenterImp(Context context, MealRepository _repo,DetailsView _view) {
+        this.context=context;
         this._view = _view;
         this._repo = _repo;
+        firebase=new Firebase();
     }
 
     @Override
@@ -61,7 +66,9 @@ public class DetailsPresenterImp implements DetailsPresenter {
     @Override
     public void addToFav(Meal meal) {
       _repo.insertMeal(meal);
-        firebase.syncFavorites( meal);
+
+          firebase.syncFavorites(meal,context);
+
     }
 
 
