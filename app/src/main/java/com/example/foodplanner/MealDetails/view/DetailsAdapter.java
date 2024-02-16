@@ -65,6 +65,13 @@ public void setList(List<String> ingredientsList) {
 
         String ingredient = ingredientsList.get(position);
         holder.mealName.setText(ingredient);
+//        holder.fav.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                holder.fav.setImageResource(R.drawable.red_fav);
+//                listener.addMealToFav();
+//            }
+//        });
 
 
 //         holder.fav.setImageResource(R.drawable.black_fav);
@@ -109,7 +116,7 @@ public void setList(List<String> ingredientsList) {
             super(itemView);
             imgCat = itemView.findViewById(R.id.imgMealCategories);
             mealName = itemView.findViewById(R.id.nameMealCategories);
-//            fav = itemView.findViewById(R.id.blackFav);
+            fav = itemView.findViewById(R.id.imgFav);
 //            calender = itemView.findViewById(R.id.calender);
             //   cardView=itemView.findViewById(R.id.cardView);
 

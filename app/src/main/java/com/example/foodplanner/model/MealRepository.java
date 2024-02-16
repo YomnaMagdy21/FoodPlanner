@@ -6,6 +6,9 @@ import com.example.foodplanner.area.modelArea.AreaResponse;
 import com.example.foodplanner.categories.modelC.CategoryResponse;
 import com.example.foodplanner.ingredients.modelIngredients.IngredientResponse;
 
+import java.util.List;
+
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
 
 public interface MealRepository {
@@ -18,7 +21,9 @@ public interface MealRepository {
     public Observable<MealResponse> getMealByCategory(String name);
     public Observable<MealResponse> getMealByArea(String name);
 
+   public Flowable<List<Meal>> getStoredMeals();
 
-//    public void insertMeal(Meal meal);
-//    public void deleteMeal(Meal meal);
+
+    public void insertMeal(Meal meal);
+    public void deleteMeal(Meal meal);
 }

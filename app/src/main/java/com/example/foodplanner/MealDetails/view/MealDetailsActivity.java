@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
@@ -45,6 +46,8 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
     LinearLayoutManager linearLayoutManager;
     DetailsAdapter detailsAdapter;
     List<String> ingredientsList;
+    ImageView fav;
+    DetailsView listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,8 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
         imgMeal=findViewById(R.id.mealImg);
         ingredients=findViewById(R.id.strIngredients);
         steps=findViewById(R.id.steps);
+        fav=findViewById(R.id.imgFav);
+
 //        recyclerView=findViewById(R.id.recViewIngredients);
 //        linearLayoutManager=new LinearLayoutManager(this);
 //        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -77,7 +82,7 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
             nameOfMeal = bundle.getString("selectedMeal");
             name.setText(nameOfMeal);
 
-            detailsPresenter= new DetailsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance()));
+            detailsPresenter= new DetailsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(this)));
 
             detailsPresenter.getDetails(nameOfMeal);
             //showMealDetails(meal);
@@ -111,6 +116,13 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
             name.setText(nameOfMeal);
             country.setText(meal.getStrArea());
             Glide.with(this).load(meal.getStrMealThumb()).into(imgMeal);
+            fav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fav.setImageResource(R.drawable.red_fav);
+                    detailsPresenter.addToFav(meal);
+                }
+            });
             ingredients.append(meal.getStrIngredient1()+" \n"+meal.getStrIngredient2()+"\n");
             ingredients.append(meal.getStrIngredient3()+" \n"+meal.getStrIngredient4()+"\n");
             ingredients.append(meal.getStrIngredient5()+" \n"+meal.getStrIngredient6()+"\n");
@@ -139,16 +151,15 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
                     }
                 });
             }
-//            populateIngredientsList(meal);
-//            Log.d("Ingredients", "Size: " + ingredientsList.size());
-
-//            detailsAdapter.notifyDataSetChanged();
-//            detailsAdapter.setList(ingredientsList);
-
-
 
 
         }
+
+    }
+
+    @Override
+    public void addMealToFav(Meal meal) {
+
 
     }
 //    private void populateIngredientsList(Meal meal) {

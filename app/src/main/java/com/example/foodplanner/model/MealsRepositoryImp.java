@@ -11,6 +11,7 @@ import com.example.foodplanner.network.MealsRemoteDataSourceImp;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
 
 public class MealsRepositoryImp implements MealRepository{
@@ -31,7 +32,7 @@ public class MealsRepositoryImp implements MealRepository{
         this.localDataSource = localDataSource;
     }
 
-   // public LiveData<List<Meal>> getStoredProducts(){return localDataSource.getAllStoredProducts();}
+    public Flowable<List<Meal>> getStoredMeals(){return localDataSource.getAllStoredMeals();}
 
     public Observable<MealResponse> getAllMeals(){//NetworkCallback networkCallback
         return remoteSource.makeNetworkCall();
@@ -68,11 +69,11 @@ public class MealsRepositoryImp implements MealRepository{
     }
 
 
-//    public void insertProduct(Meal product){
-//        localDataSource.insert(product);
-//    }
-//
-//    public void deleteProduct(Meal product){
-//        localDataSource.delete(product);
-//    }
+    public void insertMeal(Meal meal){
+        localDataSource.insert(meal);
+    }
+
+    public void deleteMeal(Meal meal){
+        localDataSource.delete(meal);
+    }
 }

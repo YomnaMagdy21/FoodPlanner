@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment implements AllMealView, CategoriesVie
         recyclerView.setLayoutManager(linearLayoutManager);
      homeAdapter=new HomeAdapter(view.getContext(),new ArrayList<>(),this);
 
-        allMealPresenter= new AllMealsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance()));
+        allMealPresenter= new AllMealsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
 
         recyclerView.setAdapter(homeAdapter);
         allMealPresenter.getMeals();
@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment implements AllMealView, CategoriesVie
         linearLayoutManagerCategories.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewCategories.setLayoutManager(linearLayoutManagerCategories);
         categoriesAdapter=new CategoriesAdapter(view.getContext(),new ArrayList<>(),this);
-        categoriesPresenter= new CategoriesPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance()));
+        categoriesPresenter= new CategoriesPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
 
         recyclerViewCategories.setAdapter(categoriesAdapter);
         categoriesPresenter.getCategories();
@@ -97,7 +97,7 @@ public class HomeFragment extends Fragment implements AllMealView, CategoriesVie
         linearLayoutManagerArea.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewArea.setLayoutManager(linearLayoutManagerArea);
         areaAdapter=new AreaAdapter(view.getContext(),new ArrayList<>(),this);
-        areaPresenterImp= new AreaPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance()));
+        areaPresenterImp= new AreaPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
 
         recyclerViewArea.setAdapter(areaAdapter);
         areaPresenterImp.getArea();

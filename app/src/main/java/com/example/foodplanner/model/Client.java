@@ -6,6 +6,7 @@ public class Client {
     String Email;
     String Password;
 
+
     public Client(){
 
     }
