@@ -20,6 +20,7 @@
         <activity
             android:name=".MealDetails.view.MealDetailsActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.view.HomeActivity"
             android:exported="false" />

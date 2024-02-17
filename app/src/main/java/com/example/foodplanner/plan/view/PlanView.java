@@ -9,5 +9,6 @@ import io.reactivex.rxjava3.core.Observable;
 
 public interface PlanView {
     public void  getAllPlans(Observable<List<Meal>> meal);
+    public void  getAllPlansMon(Observable<List<Meal>> meal);
     public void deleteFromPlan(Meal meal);
 }

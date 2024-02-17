@@ -13,20 +13,25 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
 
 public class MealLocalDataSourceImp {
+
     private MealDAO mealDAO;
     private Flowable<List<Meal>> storedMeals;
     private Observable<List<Meal>> storedPlans;
+    private Context context;
     private static MealLocalDataSourceImp localSource=null;
 
-    private  MealLocalDataSourceImp(Context context){
+    private  MealLocalDataSourceImp(Context context,String day){
 
         AppDataBase db=AppDataBase.getInstance(context.getApplicationContext());
         mealDAO= db.mealDAO();
         storedMeals=mealDAO.getAllMeals();
+//        if(day.equals("NULL")){
+//            storedMeals=mealDAO.getPlansMealsFromDay(day);
+//        }
     }
-    public static MealLocalDataSourceImp getInstance(Context context) {
+    public static MealLocalDataSourceImp getInstance(Context context,String day) {
         if(localSource==null){
-            localSource=new MealLocalDataSourceImp(context);
+            localSource=new MealLocalDataSourceImp(context,day);
         }
         return localSource;
     }
@@ -63,7 +68,8 @@ public class MealLocalDataSourceImp {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
+//                AppDataBase db=AppDataBase.getInstance(context.getApplicationContext());
+//                mealDAO= db.mealDAO();
                storedPlans= mealDAO.getPlanMeals(day);
             }
         }).start();

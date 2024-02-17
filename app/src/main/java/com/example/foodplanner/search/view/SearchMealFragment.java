@@ -68,7 +68,7 @@ public class SearchMealFragment extends Fragment implements AllMealView {
         recyclerView.setLayoutManager(linearLayoutManager);
         homeAdapter=new SearchAdepter(view.getContext(),new ArrayList<>(),this);
 
-        allMealPresenter= new AllMealsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+        allMealPresenter= new AllMealsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext(),"NULL")));
 
         recyclerView.setAdapter(homeAdapter);
         allMealPresenter.getMeals();

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.foodplanner.R;
 import com.example.foodplanner.favmeal.view.FavoriteFragment;
+import com.example.foodplanner.login.view.LoginFragment;
 import com.example.foodplanner.plan.view.PlanFragment;
 import com.example.foodplanner.search.view.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -50,9 +51,20 @@ public class HomeActivity extends AppCompatActivity {
                    // Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
                     navController.navigate(R.id.searchFragment);            return true;
                 } else if (itemId == R.id.fav) {
-                    navController.navigate(R.id.favoriteFragment);            return true;
+                    if(!LoginFragment.flag) {
+                        navController.navigate(R.id.favoriteFragment);
+                    } else{
+                        Toast.makeText(HomeActivity.this,"Not Available for guest",Toast.LENGTH_LONG).show();
+                    }
+                    return true;
                 } else if (itemId == R.id.plan) {
-                    navController.navigate(R.id.planFragment);            return true;
+                    if(!LoginFragment.flag) {
+                        navController.navigate(R.id.planFragment);
+                    }else {
+                        Toast.makeText(HomeActivity.this,"Not Available for guest",Toast.LENGTH_LONG).show();
+
+                    }
+                        return true;
                 }
 
                 return false;

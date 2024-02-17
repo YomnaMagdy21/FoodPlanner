@@ -44,7 +44,7 @@ public class MealActivity extends AppCompatActivity implements MealView {
         recyclerView.setLayoutManager(linearLayoutManager);
         homeAdapter=new MealAdapter(this,new ArrayList<>(),this);
 
-        mealPresenter= new MealPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(this)));
+        mealPresenter= new MealPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(this,"NULL")));
 
         recyclerView.setAdapter(homeAdapter);
         Bundle bundle=getIntent().getExtras();

@@ -6,11 +6,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.foodplanner.MainActivity;
+import com.example.foodplanner.MealDetails.view.DetailsView;
+import com.example.foodplanner.MealDetails.view.MealDetailsActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.database.MealLocalDataSourceImp;
 import com.example.foodplanner.favmeal.view.FavoriteAdapter;
@@ -32,35 +37,51 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class PlanFragment extends Fragment implements PlanView{
 
-    TextView sunday,monday,tuesday,wednesday,thursday,friday,saturday;
+    private static final String TAG="TAG";
+
+    Button sunday,monday,tuesday,wednesday,thursday,friday,saturday;
     PlanPresenter planPresenter;
-    RecyclerView recyclerViewSun,recyclerViewMon,recyclerViewTue,recyclerViewWed,recyclerViewThu,recyclerViewFri,recyclerViewSat;
+    RecyclerView recyclerView,recyclerViewSun,recyclerViewMon,recyclerViewTue,recyclerViewWed,recyclerViewThu,recyclerViewFri,recyclerViewSat;
     LinearLayoutManager linearLayoutManager, linearLayoutManager2,linearLayoutManager3,linearLayoutManager4,linearLayoutManager5,linearLayoutManager6,linearLayoutManager7;
     PlanAdapter planAdapter;
+    MonAdapter monAdapter;
     Observable<List<Meal>> mealList;
     Meal meal;
+    List<Meal> mealsList;
+    String day;
 
 
     public PlanFragment() {
         // Required empty public constructor
     }
 
-       public static PlanFragment newInstance() {
-        PlanFragment fragment = new PlanFragment();
-        Bundle args = new Bundle();
-          fragment.setArguments(args);
-        return fragment;
+       public static PlanFragment newInstance(String day) {
+           PlanFragment fragment = new PlanFragment();
+           Bundle args = new Bundle();
+           args.putString("plan", day);
+           fragment.setArguments(args);
+           return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (getArguments() != null) {
+            // Retrieve the plan string from the arguments bundle
+            day = getArguments().getString("plan");
+            Log.i(TAG, "onCreate1: " + day);
+        } else {
+            // Handle the case where arguments are null
+            Log.i(TAG, "No arguments found in bundle");
+        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_plan, container, false);
         sunday=view.findViewById(R.id.sunday);
@@ -70,48 +91,74 @@ public class PlanFragment extends Fragment implements PlanView{
         thursday=view.findViewById(R.id.thursday);
         friday=view.findViewById(R.id.friday);
         saturday=view.findViewById(R.id.saturday);
+        recyclerView=view.findViewById(R.id.recViewPlans);
+        linearLayoutManager=new LinearLayoutManager(view.getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
-        recyclerViewSun=view.findViewById(R.id.recViewSun);
-        recyclerViewMon=view.findViewById(R.id.recViewMon);
-        recyclerViewTue=view.findViewById(R.id.recViewTue);
-        recyclerViewWed=view.findViewById(R.id.recViewWed);
-        recyclerViewThu=view.findViewById(R.id.recViewThu);
-        recyclerViewFri=view.findViewById(R.id.recViewFri);
-        recyclerViewSat=view.findViewById(R.id.recViewSat);
+
+
+
+//        recyclerViewSun=view.findViewById(R.id.recViewSun);
+//        recyclerViewMon=view.findViewById(R.id.recViewMon);
+//        recyclerViewTue=view.findViewById(R.id.recViewTue);
+//        recyclerViewWed=view.findViewById(R.id.recViewWed);
+//        recyclerViewThu=view.findViewById(R.id.recViewThu);
+//        recyclerViewFri=view.findViewById(R.id.recViewFri);
+//        recyclerViewSat=view.findViewById(R.id.recViewSat);
 
         // cardView=view.findViewById(R.id.cardView);
-        linearLayoutManager=new LinearLayoutManager(view.getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerViewSun.setLayoutManager(linearLayoutManager);
-        linearLayoutManager2=new LinearLayoutManager(view.getContext());
-        linearLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerViewMon.setLayoutManager(linearLayoutManager2);
-        linearLayoutManager3=new LinearLayoutManager(view.getContext());
-        linearLayoutManager3.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-        recyclerViewTue.setLayoutManager(linearLayoutManager3);
-        linearLayoutManager4=new LinearLayoutManager(view.getContext());
-        linearLayoutManager4.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-        recyclerViewWed.setLayoutManager(linearLayoutManager4);
-        linearLayoutManager5=new LinearLayoutManager(view.getContext());
-        linearLayoutManager5.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-        recyclerViewThu.setLayoutManager(linearLayoutManager5);
-        linearLayoutManager6=new LinearLayoutManager(view.getContext());
-        linearLayoutManager6.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-        recyclerViewFri.setLayoutManager(linearLayoutManager6);
-        linearLayoutManager7=new LinearLayoutManager(view.getContext());
-        linearLayoutManager7.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-        recyclerViewSat.setLayoutManager(linearLayoutManager7);
+//        linearLayoutManager=new LinearLayoutManager(view.getContext());
+//        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+//        recyclerViewSun.setLayoutManager(linearLayoutManager);
+//        linearLayoutManager2=new LinearLayoutManager(view.getContext());
+//        linearLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
+//        recyclerViewMon.setLayoutManager(linearLayoutManager2);
+//        linearLayoutManager3=new LinearLayoutManager(view.getContext());
+//        linearLayoutManager3.setOrientation(LinearLayoutManager.HORIZONTAL);
+//
+//        recyclerViewTue.setLayoutManager(linearLayoutManager3);
+//        linearLayoutManager4=new LinearLayoutManager(view.getContext());
+//        linearLayoutManager4.setOrientation(LinearLayoutManager.HORIZONTAL);
+//
+//        recyclerViewWed.setLayoutManager(linearLayoutManager4);
+//        linearLayoutManager5=new LinearLayoutManager(view.getContext());
+//        linearLayoutManager5.setOrientation(LinearLayoutManager.HORIZONTAL);
+//
+//        recyclerViewThu.setLayoutManager(linearLayoutManager5);
+//        linearLayoutManager6=new LinearLayoutManager(view.getContext());
+//        linearLayoutManager6.setOrientation(LinearLayoutManager.HORIZONTAL);
+//
+//        recyclerViewFri.setLayoutManager(linearLayoutManager6);
+//        linearLayoutManager7=new LinearLayoutManager(view.getContext());
+//        linearLayoutManager7.setOrientation(LinearLayoutManager.HORIZONTAL);
+//
+//        recyclerViewSat.setLayoutManager(linearLayoutManager7);
 
 
         planAdapter=new PlanAdapter(view.getContext(),new ArrayList<>(),this);
 
-        planPresenter=new PlanPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
-        recyclerViewSun.setAdapter(planAdapter);
+        planPresenter=new PlanPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext(),"NULL")));
+       // recyclerViewSun.setAdapter(planAdapter);
+        mealsList=new ArrayList<Meal>();
+        Observable<List<Meal>> observable=Observable.fromArray(mealsList);
+       // planPresenter.getPlan(day);
+//        Bundle bundle=getArguments();
+//        if(bundle!=null) {
+//            day= bundle.getString("plan");
+//            Log.i(TAG, "onCreate1: "+ day);
+//        }
+//        Log.i(TAG, "onCreate2: "+ day);
+//
+//
+//        if (getArguments() != null) {
+//            // Retrieve the plan string from the arguments bundle
+//            day = getArguments().getString("plan");
+//            Log.i(TAG, "onCreate11: " + day);
+//        } else {
+//            // Handle the case where arguments are null
+//            Log.i(TAG, "No arguments found in bundle11");
+//        }
 
 
 
@@ -119,23 +166,34 @@ public class PlanFragment extends Fragment implements PlanView{
             @Override
             public void onClick(View v) {
 
-                //  planPresenter.getPlan("Sunday");
-                  planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+
+                  planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext(),"Sunday")));
                 if(planPresenter != null) {
-                  planPresenter.getPlan("Sunday");
+                  //  if("Sunday".equals(MealDetailsActivity.d)) {
+                        planPresenter.getPlan("Sunday");
+                        Log.i(TAG, "onCreate3: " + day);
+                        recyclerView.setAdapter(planAdapter);
+                  //  }
+                     getAllPlans(observable);
 
 
-              }
+
+                }
 
             }
         });
         monday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+                planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext(),"Monday")));
                 if(planPresenter != null) {
-                    planPresenter.getPlan("Monday");
-                    recyclerViewMon.setAdapter(planAdapter);
+
+                   // if("Monday".equals(MealDetailsActivity.d)) {
+                        planPresenter.getPlan("Monday");
+                        recyclerView.setAdapter(planAdapter);
+                      //  getAllPlansMon(observable);
+                   // }
+
                 }
 
             }
@@ -143,10 +201,13 @@ public class PlanFragment extends Fragment implements PlanView{
         tuesday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+                planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext(),"Tuesday")));
                 if(planPresenter != null) {
-                    planPresenter.getPlan("Tuesday");
-                    recyclerViewTue.setAdapter(planAdapter);
+                  //  if("Tuesday".equals(MealDetailsActivity.d)) {
+                        planPresenter.getPlan("Tuesday");
+                        recyclerView.setAdapter(planAdapter);
+                        getAllPlans(observable);
+                  //  }
                 }
 
             }
@@ -154,10 +215,13 @@ public class PlanFragment extends Fragment implements PlanView{
         wednesday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+              //  planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
                 if(planPresenter != null) {
-                    planPresenter.getPlan("Wednesday");
-                    recyclerViewWed.setAdapter(planAdapter);
+                   // if("Wednesday".equals(MealDetailsActivity.d)) {
+                        planPresenter.getPlan("Wednesday");
+                        recyclerView.setAdapter(planAdapter);
+                        getAllPlans(observable);
+                   // }
                 }
 
             }
@@ -165,10 +229,13 @@ public class PlanFragment extends Fragment implements PlanView{
         thursday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+              //  planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
                 if(planPresenter != null) {
-                    planPresenter.getPlan("Thursday");
-                    recyclerViewThu.setAdapter(planAdapter);
+                   // if("Thursday".equals(MealDetailsActivity.d)) {
+                        planPresenter.getPlan("Thursday");
+                        recyclerView.setAdapter(planAdapter);
+                        getAllPlans(observable);
+                   // }
                 }
 
             }
@@ -176,10 +243,13 @@ public class PlanFragment extends Fragment implements PlanView{
         friday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+           //     planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
                 if(planPresenter != null) {
-                    planPresenter.getPlan("Friday");
-                    recyclerViewFri.setAdapter(planAdapter);
+                  //  if("Friday".equals(MealDetailsActivity.d)) {
+                        planPresenter.getPlan("Friday");
+                        recyclerView.setAdapter(planAdapter);
+                        getAllPlans(observable);
+                   // }
                 }
 
             }
@@ -187,10 +257,13 @@ public class PlanFragment extends Fragment implements PlanView{
         saturday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+              //  planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
                 if(planPresenter != null) {
-                    planPresenter.getPlan("Saturday");
-                    recyclerViewSat.setAdapter(planAdapter);
+//                    if("Saturday".equals(MealDetailsActivity.d)) {
+                        planPresenter.getPlan("Saturday");
+                        recyclerView.setAdapter(planAdapter);
+                        getAllPlans(observable);
+//                    }
                 }
 
             }
@@ -202,6 +275,18 @@ public class PlanFragment extends Fragment implements PlanView{
 
     @Override
     public void getAllPlans(Observable<List<Meal>> meals) {
+        if (meals != null) {
+            meals.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(meal -> {
+                        planAdapter.setList(meal);
+                        planAdapter.notifyDataSetChanged();
+//
+
+                    });
+
+
+        }
 //        meals.subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe(new Observer<List<Meal>>() {
@@ -216,51 +301,56 @@ public class PlanFragment extends Fragment implements PlanView{
 //                        if (!mealList.isEmpty()) {
 //                            // Retrieve the first meal from the list
 //                            Meal meal = mealList.get(0);
-//                            if(meal.getDay().equals("Sunday")){
+//                            Log.i(TAG, "onNext: "+meal.getDay()+" "+meal.getStrMeal());
 //                                sunday.setOnClickListener(new View.OnClickListener() {
 //                                    @Override
 //                                    public void onClick(View v) {
 //
 //                                        //  planPresenter.getPlan("Sunday");
-//                                        planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+//                                        planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext(),"Sunday")));
 //                                        if(planPresenter != null) {
-//                                            planPresenter.getPlan("Sunday");
+//                                            if (meal.getDay().equals("Sunday")) {
+//                                                planPresenter.getPlan("Sunday");
 //
 //
+//                                            }
 //                                        }
-//
 //                                    }
 //                                });
 //
-//                            }
-//                            else if (meal.getDay().equals("Monday")){
+//
+//
 //                                monday.setOnClickListener(new View.OnClickListener() {
 //                                    @Override
 //                                    public void onClick(View v) {
-//                                        planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+//                                        planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext(),"Monday")));
 //                                        if(planPresenter != null) {
-//                                            planPresenter.getPlan("Monday");
-//                                            recyclerViewMon.setAdapter(planAdapter);
+//                                            if (meal.getDay().equals("Monday")) {
+//                                                planPresenter.getPlan("Monday");
+//                                                recyclerViewMon.setAdapter(planAdapter);
+//                                            }
 //                                        }
 //
 //                                    }
 //                                });
 //
-//                            } else if (meal.getDay().equals("Tuesday")) {
+//
 //                                tuesday.setOnClickListener(new View.OnClickListener() {
 //                                    @Override
 //                                    public void onClick(View v) {
-//                                        planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+//                                        planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext(),"Tuesday")));
 //                                        if(planPresenter != null) {
-//                                            planPresenter.getPlan("Tuesday");
-//                                            recyclerViewTue.setAdapter(planAdapter);
+//                                            if (meal.getDay().equals("Tuesday")) {
+//                                                planPresenter.getPlan("Tuesday");
+//                                                recyclerViewTue.setAdapter(planAdapter);
+//                                            }
 //                                        }
 //
 //                                    }
 //                                });
 //
 //                            }
-//                        } else {
+//                         else {
 //                            // Handle the case when the list is empty
 //                        }
 //                    }
@@ -268,6 +358,8 @@ public class PlanFragment extends Fragment implements PlanView{
 //                    @Override
 //                    public void onError(Throwable e) {
 //                        // Handle error if any occurs during data retrieval
+//                        Log.e(TAG, "Error retrieving meals", e);
+//
 //                    }
 //
 //                    @Override
@@ -276,16 +368,23 @@ public class PlanFragment extends Fragment implements PlanView{
 //                    }
 //                });
 
-        if (meals != null) {
-            meals.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(meal -> {
-                        planAdapter.setList(meal);
-                        planAdapter.notifyDataSetChanged();
-                    });
-        }
+
       //  return meals;
 
+    }
+
+    @Override
+    public void getAllPlansMon(Observable<List<Meal>> meals) {
+//        if (meals != null) {
+//            meals.subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(meal -> {
+//
+//                        monAdapter.setList(meal);
+//                        monAdapter.notifyDataSetChanged();
+//
+//                    });
+//        }
     }
 
     @Override

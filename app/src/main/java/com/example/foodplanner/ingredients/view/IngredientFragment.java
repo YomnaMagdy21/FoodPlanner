@@ -67,7 +67,7 @@ public class IngredientFragment extends Fragment implements IngredientView{
         recyclerView.setLayoutManager(linearLayoutManager);
         homeAdapter=new IngredientAdapter(view.getContext(),new ArrayList<>(),this);
 
-        allMealPresenter= new IngredientPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+        allMealPresenter= new IngredientPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext(),"NULL")));
 
         recyclerView.setAdapter(homeAdapter);
         allMealPresenter.getIngredient();

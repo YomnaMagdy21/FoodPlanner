@@ -1,18 +1,11 @@
-package com.example.foodplanner.home.view;
+package com.example.foodplanner.plan.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Filter;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,48 +13,45 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-
 import com.example.foodplanner.MealDetails.view.MealDetailsActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.model.Meal;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+public class MonAdapter extends RecyclerView.Adapter<MonAdapter.ViewHolder>{
     Context context;
     List<Meal> meals;
-
-//    // OnAllProductClickListener listener;
-    AllMealView listener;
+    PlanView listener;
 
 
-    public HomeAdapter(Context context, List<Meal> _products,AllMealView _listener) {
+    public MonAdapter(Context context, List<Meal> _meals, PlanView _listener) {
         this.context = context;
-        this.meals = _products;
+        this.meals = _meals;
         this.listener=_listener;
         meals=new ArrayList<Meal>();
     }
 
-    public void setList(List<Meal> updateMeals){
-        this.meals=updateMeals;
+    public void setList(List<Meal> updateProducts){
+        this.meals=updateProducts;
         notifyDataSetChanged();
 
     }
 
+
     @NonNull
     @Override
-    public HomeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MonAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view=inflater.inflate(R.layout.meal_item,parent,false);
-        ViewHolder viewHolder=new ViewHolder(view);
+        MonAdapter.ViewHolder viewHolder=new MonAdapter.ViewHolder(view);
         return viewHolder;
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MonAdapter.ViewHolder holder, int position) {
 
         Meal meal = meals.get(position);
 
@@ -70,6 +60,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 //        holder.calender.setImageResource(R.drawable.calendar);
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.img);
         holder.mealName.setText(meal.getStrMeal());
+//        holder.fav.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                listener.removeMeal(meal);
+////                meal.setFav(false);
+//            }
+//        });
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,13 +74,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 //                Bundle bundle = new Bundle();
 //                bundle.putParcelable("selectedMeal", (Parcelable) meal);
 
-                //DetailsFragment.newInstance(meal.getStrMeal());
                 Intent myIntent =new Intent(context, MealDetailsActivity.class);
                 myIntent.putExtra("selectedMeal",meal.getStrMeal());
                 context.startActivity(myIntent);
             }
         });
-
 
 
     }
@@ -93,8 +88,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public int getItemCount() {
         return meals.size();
     }
-
-
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -110,11 +103,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             super(itemView);
             img = itemView.findViewById(R.id.imgMeal);
             mealName = itemView.findViewById(R.id.mealName);
-//            fav = itemView.findViewById(R.id.blackFav);
+            fav = itemView.findViewById(R.id.redFav);
 //            calender = itemView.findViewById(R.id.calender);
             cardView=itemView.findViewById(R.id.cardView);
 
 
         }
     }
+
 }

@@ -1,8 +1,12 @@
 package com.example.foodplanner.login.view;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -17,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.SplashActivity;
 import com.example.foodplanner.firebase.Firebase;
 import com.example.foodplanner.home.view.HomeActivity;
 import com.example.foodplanner.signup.view.SignUpFragment;
@@ -32,6 +37,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class LoginFragment extends Fragment {
@@ -44,7 +54,9 @@ public class LoginFragment extends Fragment {
     private static final int RC_SIGN_IN = 123;
     private static final String TAG="LOGIN";
     Firebase firebase;
-
+    public static boolean flag=false;
+    static SharedPreferences sharedPreferences;
+    DatabaseReference mDatabase;
 
 
     public LoginFragment() {
@@ -68,9 +80,10 @@ public class LoginFragment extends Fragment {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(getContext(), gso);
-        firebase=new Firebase();
+        firebase = new Firebase();
 
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,15 +99,21 @@ public class LoginFragment extends Fragment {
         guest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flag=true;
+                //Navigation.findNavController(view).navigate(R.id.homeFragment);
+                startActivity(new Intent(getContext(), HomeActivity.class));
+
 
             }
         });
+
         auth = FirebaseAuth.getInstance();
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Navigation.findNavController(view).navigate(R.id.signUpFragment);
+                flag=false;
 
             }
         });
@@ -102,7 +121,9 @@ public class LoginFragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 loginClient();
+                flag=false;
             }
         });
 
@@ -111,6 +132,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, RC_SIGN_IN);
+                flag=false;
 
             }
         });
@@ -149,6 +171,16 @@ public class LoginFragment extends Fragment {
 
                         FirebaseUser user = mAuth.getCurrentUser();
                         firebase.showFavFromFirebase(user,getContext());
+                        firebase.showPlanFromFirebase(user,getContext(),"Sunday");
+                        firebase.showPlanFromFirebase(user,getContext(),"Monday");
+                        firebase.showPlanFromFirebase(user,getContext(),"Tuesday");
+                        firebase.showPlanFromFirebase(user,getContext(),"Wednesday");
+                        firebase.showPlanFromFirebase(user,getContext(),"Thursday");
+                        firebase.showPlanFromFirebase(user,getContext(),"Friday");
+                        firebase.showPlanFromFirebase(user,getContext(),"Saturday");
+
+
+                       // SplashActivity.setLoggedIn(true);
 
                         startActivity(new Intent(getContext(), HomeActivity.class));
 
@@ -178,6 +210,15 @@ public class LoginFragment extends Fragment {
                     if (task.isSuccessful()){
                         FirebaseUser firebaseUser=auth.getCurrentUser();
                         firebase.showFavFromFirebase(firebaseUser,getContext());
+                        firebase.showPlanFromFirebase(firebaseUser,getContext(),"Sunday");
+                        firebase.showPlanFromFirebase(firebaseUser,getContext(),"Monday");
+                        firebase.showPlanFromFirebase(firebaseUser,getContext(),"Tuesday");
+                        firebase.showPlanFromFirebase(firebaseUser,getContext(),"Wednesday");
+                        firebase.showPlanFromFirebase(firebaseUser,getContext(),"Thursday");
+                        firebase.showPlanFromFirebase(firebaseUser,getContext(),"Friday");
+                        firebase.showPlanFromFirebase(firebaseUser,getContext(),"Saturday");
+                      ////  SplashActivity.setLoggedIn(true);
+
                         Toast.makeText(getContext(), "User logged in successfully", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(getContext(), HomeActivity.class));
                     }else{

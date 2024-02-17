@@ -32,6 +32,7 @@ public class PlanPresenterImp implements PlanPresenter{
 //                    // Handle error
 //                });
          _view.getAllPlans(_repo.getPlan(day));
+         _view.getAllPlansMon(_repo.getPlan(day));
     }
 
     @Override

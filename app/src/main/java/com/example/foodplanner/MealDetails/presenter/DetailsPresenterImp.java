@@ -77,5 +77,11 @@ public class DetailsPresenterImp implements DetailsPresenter {
         firebase.insertInPlan(meal,context);
     }
 
+    @Override
+    public void removeFromFav(Meal meal) {
+        _repo.deleteMeal(meal);
+        firebase.removeMealFromFav(meal);
+    }
+
 
 }

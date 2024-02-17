@@ -33,5 +33,9 @@ public interface MealDAO {
     @Query("SELECT * From meals_table WHERE day LIKE:day")
     Observable<List<Meal>> getPlanMeals(String day);
 
+    @Query("SELECT * From meals_table WHERE day LIKE:day")
+    Flowable<List<Meal>> getPlansMealsFromDay(String day);
+
+
 
 }

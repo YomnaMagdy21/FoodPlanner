@@ -70,7 +70,7 @@ public class CategoriesFragment extends Fragment implements CategoriesView {
         recyclerView.setLayoutManager(linearLayoutManager);
         homeAdapter=new CategoriesAdapter(view.getContext(),new ArrayList<>(),this);
 
-        allMealPresenter= new CategoriesPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+        allMealPresenter= new CategoriesPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext(),"NULL")));
 
         recyclerView.setAdapter(homeAdapter);
         allMealPresenter.getCategories();

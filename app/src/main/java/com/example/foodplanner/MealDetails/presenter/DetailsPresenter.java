@@ -6,4 +6,5 @@ public interface DetailsPresenter {
     public void getDetails(String name);
     public void addToFav(Meal meal);
     public void addPlan(Meal meal);
+    public void removeFromFav(Meal meal);
 }

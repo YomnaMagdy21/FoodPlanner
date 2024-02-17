@@ -92,7 +92,7 @@ private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getRefere
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                     Meal meal=dataSnapshot.getValue(Meal.class);
-                    mealsRepositoryImp=MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance((context)));
+                    mealsRepositoryImp=MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance((context),"NULL"));
                     mealsRepositoryImp.insertMeal(meal);
                 }
 
@@ -158,5 +158,24 @@ private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getRefere
         }
     }
 
+    public void showPlanFromFirebase(FirebaseUser firebaseUser,Context context,String day){
+        String userId = firebaseUser.getUid();
+        DatabaseReference favoritesRef = databaseRef.child("Client").child(userId);
+        favoritesRef.child("plans").child(day).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    Meal meal=dataSnapshot.getValue(Meal.class);
+                    mealsRepositoryImp=MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance((context),"NULL"));
+                    mealsRepositoryImp.insertMeal(meal);
+                }
 
-}
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+}}

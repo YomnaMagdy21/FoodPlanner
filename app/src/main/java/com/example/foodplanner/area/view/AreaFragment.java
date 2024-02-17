@@ -68,7 +68,7 @@ public class AreaFragment extends Fragment implements AreaView{
         recyclerView.setLayoutManager(linearLayoutManager);
         homeAdapter=new AreaAdapter(view.getContext(),new ArrayList<>(),this);
 
-        allMealPresenter= new AreaPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
+        allMealPresenter= new AreaPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext(),"NULL")));
 
         recyclerView.setAdapter(homeAdapter);
         allMealPresenter.getArea();

@@ -10,4 +10,5 @@ public interface PlanPresenter {
 
     public void getPlan(String day);
     public void deleteMealFromDay(Meal meal);
+   // Observable<List<Meal>> getAllMeals();
 }

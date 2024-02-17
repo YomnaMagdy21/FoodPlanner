@@ -2,9 +2,12 @@ package com.example.foodplanner.MealDetails.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,9 +28,12 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.area.view.AreaAdapter;
 import com.example.foodplanner.categories.presenter.CategoriesPresenterImp;
 import com.example.foodplanner.database.MealLocalDataSourceImp;
+import com.example.foodplanner.home.view.HomeActivity;
+import com.example.foodplanner.login.view.LoginFragment;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.MealsRepositoryImp;
 import com.example.foodplanner.network.MealsRemoteDataSourceImp;
+import com.example.foodplanner.plan.view.PlanFragment;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -53,7 +59,7 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
     ImageView fav,plan;
     DetailsView listener;
     Spinner dropdownSpinner;
-
+     public static String d;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +112,7 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
             nameOfMeal = bundle.getString("selectedMeal");
             name.setText(nameOfMeal);
 
-            detailsPresenter= new DetailsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(this)),this);
+            detailsPresenter= new DetailsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(this,"NULL")),this);
 
             detailsPresenter.getDetails(nameOfMeal);
           //  dropdownSpinner.setVisibility(View.VISIBLE);
@@ -142,35 +148,117 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
             name.setText(nameOfMeal);
             country.setText(meal.getStrArea());
             Glide.with(this).load(meal.getStrMealThumb()).into(imgMeal);
-            fav.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!meal.isFav()) {
-                        fav.setImageResource(R.drawable.red_fav);
-                        if (detailsPresenter != null) {
-                            detailsPresenter.addToFav(meal);
-                            meal.setFav(true);
-                            meal.setDay("NoDay");
-                        } else {
-                            Log.e("YourClassName", "DetailsPresenterImp object is null!");
-                        }
-                    } else {
-                        fav.setImageResource(R.drawable.black_fav);
-                        meal.setFav(false);
+//            if (LoginFragment.flag) {
+//                fav.setVisibility(View.GONE);
+//                plan.setVisibility(View.GONE);
+//                dropdownSpinner.setVisibility(View.GONE);
+//
+//            } else {
+                fav.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(LoginFragment.flag){
+                            Toast.makeText(MealDetailsActivity.this,"Not Available for guest",Toast.LENGTH_LONG).show();
 
+                        }else{
+
+                        if (!meal.isFav()) {
+                            fav.setImageResource(R.drawable.red_fav);
+                            if (detailsPresenter != null) {
+                                detailsPresenter.addToFav(meal);
+                                meal.setFav(true);
+                                meal.setDay("NoDay");
+                            } else {
+                                Log.e("YourClassName", "DetailsPresenterImp object is null!");
+                            }
+                        } else {
+                            fav.setImageResource(R.drawable.black_fav);
+                            meal.setFav(false);
+
+                        }
+                    }}
+                });
+                plan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Toggle visibility of spinner
+                        if (LoginFragment.flag) {
+                            Toast.makeText(MealDetailsActivity.this, "Not Available for guest", Toast.LENGTH_LONG).show();
+
+                        } else {
+                            if (dropdownSpinner.getVisibility() == View.VISIBLE) {
+                                dropdownSpinner.setVisibility(View.GONE);
+                            } else {
+                                dropdownSpinner.setVisibility(View.VISIBLE);
+                                dropdownSpinner.performClick(); // Trigger the default spinner behavior
+                            }
+                        }
                     }
-                }
-            });
-            ingredients.append(meal.getStrIngredient1()+" \n"+meal.getStrIngredient2()+"\n");
-            ingredients.append(meal.getStrIngredient3()+" \n"+meal.getStrIngredient4()+"\n");
-            ingredients.append(meal.getStrIngredient5()+" \n"+meal.getStrIngredient6()+"\n");
-            ingredients.append(meal.getStrIngredient7()+" \n"+meal.getStrIngredient8()+"\n");
-            ingredients.append(meal.getStrIngredient9()+" \n"+meal.getStrIngredient10()+"\n");
-            ingredients.append(meal.getStrIngredient11()+" \n"+meal.getStrIngredient12()+"\n");
-            ingredients.append(meal.getStrIngredient13()+" \n"+meal.getStrIngredient14()+"\n");
-            ingredients.append(meal.getStrIngredient15()+" \n"+meal.getStrIngredient16()+"\n");
-            ingredients.append(meal.getStrIngredient17()+" \n"+meal.getStrIngredient18()+"\n");
-            ingredients.append(meal.getStrIngredient19()+" \n"+meal.getStrIngredient20()+"\n");
+                });
+
+
+                // dropdownSpinner.setOnClickListener(null);
+
+                dropdownSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        if(LoginFragment.flag){
+                            Toast.makeText(MealDetailsActivity.this,"Not Available for guest",Toast.LENGTH_LONG).show();
+
+                        }else{
+                        // Handle selection
+                        if(position != 0) {
+                            String selectedOption = (String) parent.getItemAtPosition(position);
+                            Toast.makeText(MealDetailsActivity.this, "Selected: " + selectedOption, Toast.LENGTH_SHORT).show();
+                            d=meal.getDay();
+                            Log.i("TAG", "onItemSelected: "+d);
+                             if (!meal.isFav()) {
+                            detailsPresenter.addPlan(meal);
+                                 meal.setDay(selectedOption);
+
+                             }
+                            PlanFragment planFragment = new PlanFragment();
+//                        Bundle bundle=new Bundle();
+//                        bundle.getString("plan",selectedOption);
+//                        planFragment.setArguments(bundle);
+                            PlanFragment.newInstance(selectedOption);
+                        }
+//                        FragmentManager fragmentManager = getSupportFragmentManager(); // For AppCompatActivity
+//
+//// Begin FragmentTransaction
+//                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+//
+//// Add the fragment to the container
+//                        transaction.add(R.id.homeFragment, planFragment); // R.id.fragment_container is the ID of the container in your activity's layout
+//
+//// Commit the transaction
+//                        transaction.commit();
+//                        Intent myIntent =new Intent(MealDetailsActivity.this, HomeActivity.class);
+//                        myIntent.putExtra("plan",selectedOption);
+//                        startActivity(myIntent);
+                        }
+
+
+                        // dropdownSpinner.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // Handle no selection
+                    }
+                });
+
+            }
+            ingredients.append(meal.getStrIngredient1() + " \n" + meal.getStrIngredient2() + "\n");
+            ingredients.append(meal.getStrIngredient3() + " \n" + meal.getStrIngredient4() + "\n");
+            ingredients.append(meal.getStrIngredient5() + " \n" + meal.getStrIngredient6() + "\n");
+            ingredients.append(meal.getStrIngredient7() + " \n" + meal.getStrIngredient8() + "\n");
+            ingredients.append(meal.getStrIngredient9() + " \n" + meal.getStrIngredient10() + "\n");
+            ingredients.append(meal.getStrIngredient11() + " \n" + meal.getStrIngredient12() + "\n");
+            ingredients.append(meal.getStrIngredient13() + " \n" + meal.getStrIngredient14() + "\n");
+            ingredients.append(meal.getStrIngredient15() + " \n" + meal.getStrIngredient16() + "\n");
+            ingredients.append(meal.getStrIngredient17() + " \n" + meal.getStrIngredient18() + "\n");
+            ingredients.append(meal.getStrIngredient19() + " \n" + meal.getStrIngredient20() + "\n");
             steps.setText(meal.getStrInstructions());
 
 
@@ -190,42 +278,6 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
                 });
             }
 
-            plan.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Toggle visibility of spinner
-                    if (dropdownSpinner.getVisibility() == View.VISIBLE) {
-                        dropdownSpinner.setVisibility(View.GONE);
-                    } else {
-                        dropdownSpinner.setVisibility(View.VISIBLE);
-                        dropdownSpinner.performClick(); // Trigger the default spinner behavior
-                    }
-                }
-            });
-
-
-            // dropdownSpinner.setOnClickListener(null);
-
-            dropdownSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    // Handle selection
-                    if(position != 0) {
-                        String selectedOption = (String) parent.getItemAtPosition(position);
-                        Toast.makeText(MealDetailsActivity.this, "Selected: " + selectedOption, Toast.LENGTH_SHORT).show();
-                        meal.setDay(selectedOption);
-                        detailsPresenter.addPlan(meal);
-                    }
-
-
-                    // dropdownSpinner.setVisibility(View.GONE);
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // Handle no selection
-                }
-            });
         }
 
     }
@@ -268,4 +320,3 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
 //
 //        Log.d("Ingredients", "List: " + ingredientsList.toString());
 //    }
-}
