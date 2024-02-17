@@ -217,11 +217,11 @@ public class PlanFragment extends Fragment implements PlanView{
             public void onClick(View v) {
               //  planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
                 if(planPresenter != null) {
-                   // if("Wednesday".equals(MealDetailsActivity.d)) {
+                    if("Wednesday".equals(MealDetailsActivity.d)) {
                         planPresenter.getPlan("Wednesday");
                         recyclerView.setAdapter(planAdapter);
                         getAllPlans(observable);
-                   // }
+                    }
                 }
 
             }
@@ -373,22 +373,22 @@ public class PlanFragment extends Fragment implements PlanView{
 
     }
 
-    @Override
-    public void getAllPlansMon(Observable<List<Meal>> meals) {
-//        if (meals != null) {
-//            meals.subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(meal -> {
-//
-//                        monAdapter.setList(meal);
-//                        monAdapter.notifyDataSetChanged();
-//
-//                    });
-//        }
-    }
+//    @Override
+//    public void getAllPlansMon(Observable<List<Meal>> meals) {
+////        if (meals != null) {
+////            meals.subscribeOn(Schedulers.io())
+////                    .observeOn(AndroidSchedulers.mainThread())
+////                    .subscribe(meal -> {
+////
+////                        monAdapter.setList(meal);
+////                        monAdapter.notifyDataSetChanged();
+////
+////                    });
+////        }
+//    }
 
     @Override
     public void deleteFromPlan(Meal meal) {
-
+        planPresenter.deleteMealFromDay(meal);
     }
 }

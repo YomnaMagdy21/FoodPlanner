@@ -7,6 +7,7 @@ import com.example.foodplanner.categories.modelC.CategoryResponse;
 import com.example.foodplanner.database.MealLocalDataSourceImp;
 import com.example.foodplanner.ingredients.modelIngredients.IngredientResponse;
 import com.example.foodplanner.network.MealsRemoteDataSourceImp;
+import com.example.foodplanner.plan.model.MealPlan;
 
 
 import java.util.List;
@@ -81,6 +82,16 @@ public class MealsRepositoryImp implements MealRepository{
     public void deleteEverMeal() {
         localDataSource.deleteAllData();
     }
+
+//    @Override
+//    public void insertP(MealPlan meal) {
+//        localDataSource.insertPlan(meal);
+//    }
+//
+//    @Override
+//    public void deleteP(MealPlan meal) {
+//         localDataSource.deletePlan(meal);
+//    }
 
     @Override
     public Observable<List<Meal>> getPlan(String day) {

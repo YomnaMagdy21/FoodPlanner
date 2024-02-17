@@ -48,8 +48,10 @@ public class MealActivity extends AppCompatActivity implements MealView {
 
         recyclerView.setAdapter(homeAdapter);
         Bundle bundle=getIntent().getExtras();
-        mealName=bundle.getString("Name");
-        areaName=bundle.getString("Area");
+        if(bundle!=null) {
+            mealName = bundle.getString("Name");
+            areaName = bundle.getString("Area");
+        }
 
 
         mealPresenter.getMealByCategory(mealName);

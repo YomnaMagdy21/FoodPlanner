@@ -1,5 +1,6 @@
 package com.example.foodplanner.plan.presenter;
 
+import com.example.foodplanner.firebase.Firebase;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.MealRepository;
 import com.example.foodplanner.plan.view.PlanView;
@@ -14,10 +15,12 @@ public class PlanPresenterImp implements PlanPresenter{
 
     PlanView _view;
     MealRepository _repo;
+    Firebase firebase;
 
     public PlanPresenterImp(PlanView _view, MealRepository _repo) {
         this._view = _view;
         this._repo = _repo;
+        firebase=new Firebase();
     }
 
 
@@ -32,11 +35,13 @@ public class PlanPresenterImp implements PlanPresenter{
 //                    // Handle error
 //                });
          _view.getAllPlans(_repo.getPlan(day));
-         _view.getAllPlansMon(_repo.getPlan(day));
+       //  _view.getAllPlansMon(_repo.getPlan(day));
     }
 
     @Override
     public void deleteMealFromDay(Meal meal) {
         _repo.deleteMeal(meal);
+        firebase.removeMealFromPlan(meal);
+
     }
 }

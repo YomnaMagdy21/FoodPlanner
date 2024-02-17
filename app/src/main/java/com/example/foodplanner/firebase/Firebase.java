@@ -178,4 +178,25 @@ private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getRefere
             }
         });
 
-}}
+}
+    public void removeMealFromPlan(Meal favoriteMeals) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            DatabaseReference favoritesRef = databaseRef.child("Client").child(userId);
+            favoritesRef.child("plans").child(favoriteMeals.getDay()).child(favoriteMeals.getStrMeal()).removeValue()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+
+        }
+    }
+}

@@ -46,7 +46,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder>{
     @Override
     public PlanAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view=inflater.inflate(R.layout.meal_item,parent,false);
+        View view=inflater.inflate(R.layout.plan_item,parent,false);
         PlanAdapter.ViewHolder viewHolder=new PlanAdapter.ViewHolder(view);
         return viewHolder;
 
@@ -81,6 +81,12 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder>{
                 context.startActivity(myIntent);
             }
         });
+        holder.cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.deleteFromPlan(meal);
+            }
+        });
 
 
     }
@@ -93,7 +99,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder>{
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView img,fav,calender;
+        ImageView img,fav,calender,cancel;
 
         TextView mealName;
         CardView cardView;
@@ -108,6 +114,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder>{
             fav = itemView.findViewById(R.id.redFav);
 //            calender = itemView.findViewById(R.id.calender);
             cardView=itemView.findViewById(R.id.cardView);
+            cancel=itemView.findViewById(R.id.deleteImg);
 
 
         }

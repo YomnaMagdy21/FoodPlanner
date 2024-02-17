@@ -5,6 +5,8 @@ package com.example.foodplanner.model;
 import com.example.foodplanner.area.modelArea.AreaResponse;
 import com.example.foodplanner.categories.modelC.CategoryResponse;
 import com.example.foodplanner.ingredients.modelIngredients.IngredientResponse;
+import com.example.foodplanner.plan.model.MealPlan;
+
 
 import java.util.List;
 
@@ -26,6 +28,10 @@ public interface MealRepository {
 
     public void insertMeal(Meal meal);
     public void deleteMeal(Meal meal);
+
     public void deleteEverMeal();
+
+//    public void insertP(MealPlan meal);
+//    public void deleteP(MealPlan meal);
     public Observable<List<Meal>> getPlan(String day);
 }

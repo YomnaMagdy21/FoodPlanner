@@ -71,7 +71,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
 //                bundle.putParcelable("selectedMeal", (Parcelable) meal);
 
                 Intent myIntent =new Intent(context, MealDetailsActivity.class);
-                myIntent.putExtra("Name",meal.getStrMeal());
+                myIntent.putExtra("selectedMeal",meal.getStrMeal());
                 context.startActivity(myIntent);
             }
         });
@@ -83,7 +83,12 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return meals.size();
+        if (meals != null) {
+            return meals.size();
+        } else {
+            return 0; // or any other default value, depending on your logic
+        }
+
     }
 
 

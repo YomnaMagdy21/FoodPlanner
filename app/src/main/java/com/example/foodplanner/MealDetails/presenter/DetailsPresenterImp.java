@@ -11,6 +11,7 @@ import com.example.foodplanner.firebase.Firebase;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.MealRepository;
 import com.example.foodplanner.model.MealResponse;
+import com.example.foodplanner.plan.model.MealPlan;
 
 import java.util.List;
 
@@ -47,6 +48,8 @@ public class DetailsPresenterImp implements DetailsPresenter {
                     @Override
                     public void onNext(@NonNull MealResponse categoryResponse) {
                         _view.showMealDetails(categoryResponse.getMeals());
+                       // _view.handlePlan(categoryResponse.getMeals());
+
                     }
 
                     @Override
