@@ -7,5 +7,5 @@ import java.util.List;
 public interface DetailsView {
 
     public void showMealDetails(List<Meal> mealList);
-    public  void addMealToFav(Meal meal);
+    //public  void addMealToFav(Meal meal);
 }

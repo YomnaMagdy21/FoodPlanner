@@ -26,4 +26,6 @@ public interface MealRepository {
 
     public void insertMeal(Meal meal);
     public void deleteMeal(Meal meal);
+    public void deleteEverMeal();
+    public Observable<List<Meal>> getPlan(String day);
 }

@@ -7,11 +7,18 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "meals_table")
 public class Meal {
 
+
+
     String strMeal;
     String strMealThumb;
+
     @PrimaryKey
     @NonNull
     String idMeal;
+
+    boolean isFav;
+
+    String day;
     String strArea;
     String strIngredient1;
     String strIngredient2;
@@ -454,5 +461,21 @@ public class Meal {
 
     public void setIngredient(String ingredient) {
         this.ingredient = ingredient;
+    }
+
+    public boolean isFav() {
+        return isFav;
+    }
+
+    public void setFav(boolean fav) {
+        isFav = fav;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 }

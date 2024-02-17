@@ -11,6 +11,7 @@ import com.example.foodplanner.model.Meal;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
 
 @Dao
 public interface MealDAO {
@@ -25,4 +26,12 @@ public interface MealDAO {
 
     @Delete
     void delete(Meal meal);
+
+    @Query("DELETE FROM meals_table")
+    void deleteAll();
+
+    @Query("SELECT * From meals_table WHERE day LIKE:day")
+    Observable<List<Meal>> getPlanMeals(String day);
+
+
 }

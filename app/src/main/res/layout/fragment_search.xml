@@ -11,14 +11,15 @@
         android:id="@+id/btnMealSearch"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="120dp"
 
-        android:backgroundTint="@color/red"
+        android:backgroundTint="@color/bink"
         android:fontFamily="sans-serif"
         android:inputType="text"
         android:text="@string/search_meal"
         android:textColor="@color/white"
         android:textSize="24sp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,16 +29,15 @@
         android:layout_width="360dp"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="84dp"
-        android:backgroundTint="@color/red"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/bink"
         android:fontFamily="sans-serif"
         android:inputType="text"
         android:text="@string/search_categories"
         android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnMealSearch"
+        app:layout_constraintStart_toStartOf="@+id/btnMealSearch"
         app:layout_constraintTop_toBottomOf="@+id/btnMealSearch" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -46,14 +46,14 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="80dp"
-        android:backgroundTint="@color/red"
+        android:backgroundTint="@color/bink"
         android:fontFamily="sans-serif"
         android:inputType="text"
         android:text="@string/search_area"
         android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnCategorySearch"
+        app:layout_constraintStart_toStartOf="@+id/btnCategorySearch"
         app:layout_constraintTop_toBottomOf="@+id/btnCategorySearch" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -61,14 +61,14 @@
         android:layout_width="360dp"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="60dp"
-        android:backgroundTint="@color/red"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/bink"
         android:fontFamily="sans-serif"
         android:inputType="text"
         android:text="@string/search_ingradients"
         android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnAreaSearch"
+        app:layout_constraintStart_toStartOf="@+id/btnAreaSearch"
         app:layout_constraintTop_toBottomOf="@+id/btnAreaSearch" />
 </androidx.constraintlayout.widget.ConstraintLayout>

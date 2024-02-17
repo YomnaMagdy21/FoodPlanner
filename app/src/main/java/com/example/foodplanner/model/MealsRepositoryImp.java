@@ -76,4 +76,16 @@ public class MealsRepositoryImp implements MealRepository{
     public void deleteMeal(Meal meal){
         localDataSource.delete(meal);
     }
+
+    @Override
+    public void deleteEverMeal() {
+        localDataSource.deleteAllData();
+    }
+
+    @Override
+    public Observable<List<Meal>> getPlan(String day) {
+       return localDataSource.getPlanMealsByDay(day);
+    }
+
+
 }

@@ -43,7 +43,7 @@ public class FavoritePresenterImp implements FavoritePresenter{
     }
 
     @Override
-    public void showFavMeal(List<Meal> meals) {
+    public void showFavMeal(Flowable<List<Meal>> meals) {
         _view.showFav(meals);
     }
 

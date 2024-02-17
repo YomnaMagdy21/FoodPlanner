@@ -1,14 +1,11 @@
-package com.example.foodplanner.favmeal.view;
+package com.example.foodplanner.plan.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,18 +15,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.MealDetails.view.MealDetailsActivity;
 import com.example.foodplanner.R;
+import com.example.foodplanner.favmeal.view.FavoriteAdapter;
+import com.example.foodplanner.favmeal.view.FavoriteView;
 import com.example.foodplanner.model.Meal;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoriteAdapter  extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder>{
+public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder>{
     Context context;
     List<Meal> meals;
-    FavoriteView listener;
+    PlanView listener;
 
 
-    public FavoriteAdapter(Context context, List<Meal> _meals, FavoriteView _listener) {
+    public PlanAdapter(Context context, List<Meal> _meals, PlanView _listener) {
         this.context = context;
         this.meals = _meals;
         this.listener=_listener;
@@ -45,16 +44,16 @@ public class FavoriteAdapter  extends RecyclerView.Adapter<FavoriteAdapter.ViewH
 
     @NonNull
     @Override
-    public FavoriteAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PlanAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view=inflater.inflate(R.layout.fav_item,parent,false);
-        FavoriteAdapter.ViewHolder viewHolder=new FavoriteAdapter.ViewHolder(view);
+        View view=inflater.inflate(R.layout.meal_item,parent,false);
+        PlanAdapter.ViewHolder viewHolder=new PlanAdapter.ViewHolder(view);
         return viewHolder;
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FavoriteAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PlanAdapter.ViewHolder holder, int position) {
 
         Meal meal = meals.get(position);
 
@@ -63,13 +62,13 @@ public class FavoriteAdapter  extends RecyclerView.Adapter<FavoriteAdapter.ViewH
 //        holder.calender.setImageResource(R.drawable.calendar);
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.img);
         holder.mealName.setText(meal.getStrMeal());
-        holder.fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.removeMeal(meal);
-                meal.setFav(false);
-            }
-        });
+//        holder.fav.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                listener.removeMeal(meal);
+////                meal.setFav(false);
+//            }
+//        });
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

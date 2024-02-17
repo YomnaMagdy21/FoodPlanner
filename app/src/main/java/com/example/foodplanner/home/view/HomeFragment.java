@@ -12,7 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.foodplanner.MainActivity;
 import com.example.foodplanner.MealDetails.view.MealDetailsActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.area.modelArea.Area;
@@ -30,6 +33,7 @@ import com.example.foodplanner.home.presenter.AllMealsPresenterImp;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.MealsRepositoryImp;
 import com.example.foodplanner.network.MealsRemoteDataSourceImp;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +51,8 @@ public class HomeFragment extends Fragment implements AllMealView, CategoriesVie
      CategoriesPresenterImp categoriesPresenter;
      AreaPresenterImp areaPresenterImp;
      AreaAdapter areaAdapter;
-
+     ImageView logout;
+     MealsRepositoryImp mealsRepositoryImp;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -101,6 +106,17 @@ public class HomeFragment extends Fragment implements AllMealView, CategoriesVie
 
         recyclerViewArea.setAdapter(areaAdapter);
         areaPresenterImp.getArea();
+        logout=view.findViewById(R.id.logoutImg);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                mAuth.signOut();
+                  allMealPresenter.deleteData();
+                Toast.makeText(getContext(),"logout",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getActivity(), MainActivity.class));
+            }
+        });
 
 
 

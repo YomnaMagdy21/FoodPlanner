@@ -9,9 +9,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
@@ -46,8 +50,9 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
     LinearLayoutManager linearLayoutManager;
     DetailsAdapter detailsAdapter;
     List<String> ingredientsList;
-    ImageView fav;
+    ImageView fav,plan;
     DetailsView listener;
+    Spinner dropdownSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,25 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
         ingredients=findViewById(R.id.strIngredients);
         steps=findViewById(R.id.steps);
         fav=findViewById(R.id.imgFav);
+        plan=findViewById(R.id.planImg);
+        dropdownSpinner = findViewById(R.id.dropdown_spinner);
+        List<String> options = new ArrayList<>();
+        options.add("Choose day");
+        options.add("Sunday");
+        options.add("Monday");
+        options.add("Tuesday");
+        options.add("Wednesday");
+        options.add("Thursday");
+        options.add("Friday");
+        options.add("Saturday");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdownSpinner.setAdapter(adapter);
+        dropdownSpinner.setSelection(0,false);
+       // dropdownSpinner.setVisibility(View.GONE);
+
+
 
 //        recyclerView=findViewById(R.id.recViewIngredients);
 //        linearLayoutManager=new LinearLayoutManager(this);
@@ -85,6 +109,8 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
             detailsPresenter= new DetailsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(this)),this);
 
             detailsPresenter.getDetails(nameOfMeal);
+          //  dropdownSpinner.setVisibility(View.VISIBLE);
+
             //showMealDetails(meal);
 //            country.setText(meal.getStrArea());
 //            Glide.with(this).load(meal.getStrMealThumb()).into(imgMeal);
@@ -119,14 +145,20 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
             fav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    fav.setImageResource(R.drawable.red_fav);
-                    if (detailsPresenter != null) {
-                        detailsPresenter.addToFav(meal);
+                    if (!meal.isFav()) {
+                        fav.setImageResource(R.drawable.red_fav);
+                        if (detailsPresenter != null) {
+                            detailsPresenter.addToFav(meal);
+                            meal.setFav(true);
+                            meal.setDay("NoDay");
+                        } else {
+                            Log.e("YourClassName", "DetailsPresenterImp object is null!");
+                        }
                     } else {
-                        Log.e("YourClassName", "DetailsPresenterImp object is null!");
+                        fav.setImageResource(R.drawable.black_fav);
+                        meal.setFav(false);
+
                     }
-
-
                 }
             });
             ingredients.append(meal.getStrIngredient1()+" \n"+meal.getStrIngredient2()+"\n");
@@ -158,16 +190,47 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
                 });
             }
 
+            plan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Toggle visibility of spinner
+                    if (dropdownSpinner.getVisibility() == View.VISIBLE) {
+                        dropdownSpinner.setVisibility(View.GONE);
+                    } else {
+                        dropdownSpinner.setVisibility(View.VISIBLE);
+                        dropdownSpinner.performClick(); // Trigger the default spinner behavior
+                    }
+                }
+            });
 
+
+            // dropdownSpinner.setOnClickListener(null);
+
+            dropdownSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    // Handle selection
+                    if(position != 0) {
+                        String selectedOption = (String) parent.getItemAtPosition(position);
+                        Toast.makeText(MealDetailsActivity.this, "Selected: " + selectedOption, Toast.LENGTH_SHORT).show();
+                        meal.setDay(selectedOption);
+                        detailsPresenter.addPlan(meal);
+                    }
+
+
+                    // dropdownSpinner.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    // Handle no selection
+                }
+            });
         }
 
     }
 
-    @Override
-    public void addMealToFav(Meal meal) {
 
-
-    }
 //    private void populateIngredientsList(Meal meal) {
 //        ingredientsList.clear();
 //        // Add ingredients and measures to the list

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.firebase.Firebase;
 import com.example.foodplanner.home.view.HomeActivity;
 import com.example.foodplanner.signup.view.SignUpFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -36,12 +37,13 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class LoginFragment extends Fragment {
 
     TextView signUp,email,password;
-    Button login;
+    Button login,guest;
     private FirebaseAuth auth;
     GoogleSignInClient mGoogleSignInClient;
     ImageView logo;
     private static final int RC_SIGN_IN = 123;
     private static final String TAG="LOGIN";
+    Firebase firebase;
 
 
 
@@ -66,6 +68,7 @@ public class LoginFragment extends Fragment {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(getContext(), gso);
+        firebase=new Firebase();
 
     }
 
@@ -79,6 +82,13 @@ public class LoginFragment extends Fragment {
         password=view.findViewById(R.id.editTxtPassword);
         login=view.findViewById(R.id.btnLogin);
         logo=view.findViewById(R.id.googleLogo);
+        guest=view.findViewById(R.id.btnGuest);
+        guest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         auth = FirebaseAuth.getInstance();
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,6 +148,7 @@ public class LoginFragment extends Fragment {
                     if (task.isSuccessful()) {
 
                         FirebaseUser user = mAuth.getCurrentUser();
+                        firebase.showFavFromFirebase(user,getContext());
 
                         startActivity(new Intent(getContext(), HomeActivity.class));
 
@@ -153,6 +164,7 @@ public class LoginFragment extends Fragment {
         String Email = email.getText().toString();
         String Password = password.getText().toString();
 
+
         if (TextUtils.isEmpty(Email)){
             email.setError("Email cannot be empty");
             email.requestFocus();
@@ -164,6 +176,8 @@ public class LoginFragment extends Fragment {
                 @Override
                 public void onComplete(@org.jetbrains.annotations.NotNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
+                        FirebaseUser firebaseUser=auth.getCurrentUser();
+                        firebase.showFavFromFirebase(firebaseUser,getContext());
                         Toast.makeText(getContext(), "User logged in successfully", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(getContext(), HomeActivity.class));
                     }else{

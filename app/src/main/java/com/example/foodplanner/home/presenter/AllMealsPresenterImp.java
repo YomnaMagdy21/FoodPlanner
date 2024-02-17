@@ -55,6 +55,11 @@ public class AllMealsPresenterImp implements AllMealPresenter {//,NetworkCallbac
       //  _repo.getAllMeals();
     }
 
+    @Override
+    public void deleteData() {
+        _repo.deleteEverMeal();
+    }
+
 //    @Override
 //    public void addToFav(Meal product) {
 //        _repo.insertProduct(product);

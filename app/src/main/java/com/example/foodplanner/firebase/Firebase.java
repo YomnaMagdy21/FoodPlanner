@@ -6,7 +6,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.foodplanner.database.MealLocalDataSourceImp;
 import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.model.MealRepository;
+import com.example.foodplanner.model.MealsRepositoryImp;
+import com.example.foodplanner.network.MealsRemoteDataSourceImp;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -15,8 +19,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +31,7 @@ import java.util.List;
 public class Firebase {
 
     private static Firebase firebaseInstance;
+    MealsRepositoryImp mealsRepositoryImp;
 
     public static Firebase getInstance() {
         if (firebaseInstance == null) {
@@ -76,6 +84,28 @@ private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getRefere
             Toast.makeText(context, "Guest users can't add to favorite", Toast.LENGTH_SHORT).show();
         }
     }
+    public void showFavFromFirebase(FirebaseUser firebaseUser,Context context){
+        String userId = firebaseUser.getUid();
+        DatabaseReference favoritesRef = databaseRef.child("Client").child(userId);
+        favoritesRef.child("favorites").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    Meal meal=dataSnapshot.getValue(Meal.class);
+                    mealsRepositoryImp=MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance((context)));
+                    mealsRepositoryImp.insertMeal(meal);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
 
     public void removeMealFromFav(Meal favoriteMeals) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -86,21 +116,47 @@ private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getRefere
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            Log.e("Firebase", "Remove from favorite successfully ");
 
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.e("Firebase", "Failed to remove favorites: " + e.getMessage());
 
                         }
                     });
 
         }
     }
+    public void insertInPlan(Meal favoriteMeals,Context context) {
+        mealList=new ArrayList<Meal>();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            DatabaseReference favoritesRef = databaseRef.child("Client").child(userId);
+            favoritesRef.child("plans").child(favoriteMeals.getDay()).child(favoriteMeals.getStrMeal()).setValue(favoriteMeals)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.e("Firebase", "Added to plan successfully ");
 
-    public void showFavFromFirease(){
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e("Firebase", "Failed to add plan: " + e.getMessage());
 
+                        }
+                    });
+
+
+
+
+
+        }
+        else {
+            Toast.makeText(context, "Guest users can't add to favorite", Toast.LENGTH_SHORT).show();
+        }
     }
+
+
 }

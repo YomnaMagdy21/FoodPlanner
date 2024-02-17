@@ -10,5 +10,5 @@ public interface FavoritePresenter {
 
     public void removeFromFav(Meal product);
     public Flowable<List<Meal>> getFavMeal();
-    public void showFavMeal(List<Meal> meals);
+    public void showFavMeal(Flowable<List<Meal>> meals);
 }

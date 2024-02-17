@@ -83,12 +83,8 @@ public class FavoriteFragment extends Fragment implements FavoriteView{
         recyclerView.setAdapter(homeAdapter);
         allMealPresenter.getFavMeal();
         mealList=allMealPresenter.getFavMeal();
-        mealList.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(meal->{
-                    homeAdapter.setList((List<Meal>) meal);
-                    homeAdapter.notifyDataSetChanged();
-                });
+        allMealPresenter.showFavMeal(mealList);
+
 
 
 
@@ -96,8 +92,13 @@ public class FavoriteFragment extends Fragment implements FavoriteView{
     }
 
     @Override
-    public void showFav(List<Meal> meals) {
-
+    public void showFav(Flowable<List<Meal>> meals) {
+        meals.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(meal->{
+                    homeAdapter.setList((List<Meal>) meal);
+                    homeAdapter.notifyDataSetChanged();
+                });
     }
 
     @Override

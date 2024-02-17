@@ -71,5 +71,11 @@ public class DetailsPresenterImp implements DetailsPresenter {
 
     }
 
+    @Override
+    public void addPlan(Meal meal) {
+        _repo.insertMeal(meal);
+        firebase.insertInPlan(meal,context);
+    }
+
 
 }

@@ -17,7 +17,7 @@
             tools:layout_editor_absoluteY="200dp">
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/sunday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -29,16 +29,16 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/recViewSun"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                app:layout_constraintTop_toBottomOf="@+id/sunday" />
 
             <TextView
 
-                android:id="@+id/textView10"
+                android:id="@+id/monday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -46,119 +46,120 @@
                 android:text="@string/monday"
                 android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+                app:layout_constraintTop_toBottomOf="@+id/recViewSun" />
 
             <androidx.recyclerview.widget.RecyclerView
 
-                android:id="@+id/recyclerView3"
+                android:id="@+id/recViewMon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                app:layout_constraintTop_toBottomOf="@+id/monday" />
 
             <TextView
 
 
-                android:id="@+id/textView11"
+                android:id="@+id/tuesday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/tuesday"
                 android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+                app:layout_constraintTop_toBottomOf="@+id/recViewMon" />
 
             <androidx.recyclerview.widget.RecyclerView
 
-                android:id="@+id/recyclerView4"
+                android:id="@+id/recViewTue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                app:layout_constraintTop_toBottomOf="@+id/tuesday" />
 
             <TextView
 
 
-                android:id="@+id/textView12"
+                android:id="@+id/wednesday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/wedensday"
                 android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView4" />
+                app:layout_constraintTop_toBottomOf="@+id/recViewTue" />
 
             <androidx.recyclerview.widget.RecyclerView
 
-                android:id="@+id/recyclerView5"
+                android:id="@+id/recViewWed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                app:layout_constraintTop_toBottomOf="@+id/wednesday" />
 
             <TextView
 
 
-                android:id="@+id/textView15"
+                android:id="@+id/thursday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/thuresday"
                 android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView5" />
+                app:layout_constraintTop_toBottomOf="@+id/recViewWed" />
 
             <androidx.recyclerview.widget.RecyclerView
 
-                android:id="@+id/recyclerView6"
+                android:id="@+id/recViewThu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/textView15"
+                app:layout_constraintTop_toBottomOf="@+id/thursday"
                 tools:layout_editor_absoluteX="0dp" />
 
             <TextView
 
 
-                android:id="@+id/textView16"
+                android:id="@+id/friday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/friday"
                 android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView6" />
+                app:layout_constraintTop_toBottomOf="@+id/recViewThu" />
 
             <androidx.recyclerview.widget.RecyclerView
 
-                android:id="@+id/recyclerView7"
+                android:id="@+id/recViewFri"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView16" />
+                app:layout_constraintTop_toBottomOf="@+id/friday" />
 
             <TextView
 
 
-                android:id="@+id/textView17"
+                android:id="@+id/saturday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/saterday"
                 android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView7" />
+                app:layout_constraintTop_toBottomOf="@+id/recViewFri" />
 
             <androidx.recyclerview.widget.RecyclerView
 
+                android:id="@+id/recViewSat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                app:layout_constraintTop_toBottomOf="@+id/saturday" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
