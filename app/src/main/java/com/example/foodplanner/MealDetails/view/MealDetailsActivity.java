@@ -114,7 +114,7 @@ public class MealDetailsActivity extends AppCompatActivity implements DetailsVie
             nameOfMeal = bundle.getString("selectedMeal");
             name.setText(nameOfMeal);
 
-            detailsPresenter= new DetailsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(this,"NULL")),this);
+            detailsPresenter= new DetailsPresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(this)),this);
 
             detailsPresenter.getDetails(nameOfMeal);
           //  dropdownSpinner.setVisibility(View.VISIBLE);

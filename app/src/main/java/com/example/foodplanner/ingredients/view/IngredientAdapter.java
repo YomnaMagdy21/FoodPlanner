@@ -1,6 +1,7 @@
 package com.example.foodplanner.ingredients.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.MealDetails.view.MealDetailsActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.categories.modelC.Categories;
 import com.example.foodplanner.categories.view.CategoriesAdapter;
@@ -77,6 +79,18 @@ public class IngredientAdapter  extends RecyclerView.Adapter<IngredientAdapter.V
             // Alternatively, you can hide the ImageView
             // holder.imgCat.setVisibility(View.GONE);
         }            holder.mealName.setText(meal.getStrMeal());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //listener.navigateToDetails(meal);
+//                Bundle bundle = new Bundle();
+//                bundle.putParcelable("selectedMeal", (Parcelable) meal);
+
+                Intent myIntent =new Intent(context, MealDetailsActivity.class);
+                myIntent.putExtra("selectedMeal",meal.getStrMeal());
+                context.startActivity(myIntent);
+            }
+        });
 //            holder.cardView.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -142,7 +156,7 @@ public class IngredientAdapter  extends RecyclerView.Adapter<IngredientAdapter.V
             mealName = itemView.findViewById(R.id.nameMealCategories);
 //            fav = itemView.findViewById(R.id.blackFav);
 //            calender = itemView.findViewById(R.id.calender);
-            //   cardView=itemView.findViewById(R.id.cardView);
+               cardView=itemView.findViewById(R.id.cardViewCat);
 
 
         }

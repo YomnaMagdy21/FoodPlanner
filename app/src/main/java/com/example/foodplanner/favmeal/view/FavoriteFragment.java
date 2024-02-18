@@ -78,7 +78,7 @@ public class FavoriteFragment extends Fragment implements FavoriteView{
         recyclerView.setLayoutManager(linearLayoutManager);
         homeAdapter=new FavoriteAdapter(view.getContext(),new ArrayList<>(),this);
 
-        allMealPresenter= new FavoritePresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext(),"NULL")));
+        allMealPresenter= new FavoritePresenterImp(this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
 
         recyclerView.setAdapter(homeAdapter);
         allMealPresenter.getFavMeal();

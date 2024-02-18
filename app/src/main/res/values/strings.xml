@@ -29,12 +29,12 @@
     <string name="search_categories">Search by Categories</string>
     <string name="search_area">Search by Countries</string>
     <string name="search_ingradients">Search by Ingredients</string>
-    <string name="sunday">Sunday</string>
-    <string name="monday">Monday</string>
-    <string name="tuesday">Tuesday</string>
-    <string name="wedensday">Wednesday</string>
-    <string name="thuresday">Thursday</string>
-    <string name="friday">Friday</string>
-    <string name="saterday">Saturday</string>
+    <string name="sunday">Sun</string>
+    <string name="monday">Mon</string>
+    <string name="tuesday">Tue</string>
+    <string name="wedensday">Wed</string>
+    <string name="thuresday">Thu</string>
+    <string name="friday">Fri</string>
+    <string name="saterday">Sat</string>
     <string name="fav">Favorite</string>
 </resources>

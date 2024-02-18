@@ -76,6 +76,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder>{
 //                Bundle bundle = new Bundle();
 //                bundle.putParcelable("selectedMeal", (Parcelable) meal);
 
+                //DetailsFragment.newInstance(meal.getStrMeal());
                 Intent myIntent =new Intent(context, MealDetailsActivity.class);
                 myIntent.putExtra("selectedMeal",meal.getStrMeal());
                 context.startActivity(myIntent);
@@ -111,7 +112,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder>{
             super(itemView);
             img = itemView.findViewById(R.id.imgMeal);
             mealName = itemView.findViewById(R.id.mealName);
-            fav = itemView.findViewById(R.id.redFav);
+         //   fav = itemView.findViewById(R.id.redFav);
 //            calender = itemView.findViewById(R.id.calender);
             cardView=itemView.findViewById(R.id.cardView);
             cancel=itemView.findViewById(R.id.deleteImg);

@@ -92,7 +92,7 @@ private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getRefere
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                     Meal meal=dataSnapshot.getValue(Meal.class);
-                    mealsRepositoryImp=MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance((context),"NULL"));
+                    mealsRepositoryImp=MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance((context)));
                     mealsRepositoryImp.insertMeal(meal);
                 }
 
@@ -166,7 +166,7 @@ private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getRefere
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                     Meal meal=dataSnapshot.getValue(Meal.class);
-                    mealsRepositoryImp=MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance((context),"NULL"));
+                    mealsRepositoryImp=MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance((context)));
                     mealsRepositoryImp.insertMeal(meal);
                 }
 

@@ -23,7 +23,7 @@ public class MealLocalDataSourceImp {
     private Context context;
     private static MealLocalDataSourceImp localSource=null;
 
-    private  MealLocalDataSourceImp(Context context,String day){
+    private  MealLocalDataSourceImp(Context context){
 
         AppDataBase db=AppDataBase.getInstance(context.getApplicationContext());
         mealDAO= db.mealDAO();
@@ -32,9 +32,9 @@ public class MealLocalDataSourceImp {
 //            storedMeals=mealDAO.getPlansMealsFromDay(day);
 //        }
     }
-    public static MealLocalDataSourceImp getInstance(Context context,String day) {
+    public static MealLocalDataSourceImp getInstance(Context context) {
         if(localSource==null){
-            localSource=new MealLocalDataSourceImp(context,day);
+            localSource=new MealLocalDataSourceImp(context);
         }
         return localSource;
     }

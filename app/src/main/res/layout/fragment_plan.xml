@@ -19,8 +19,8 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sunday"
-        android:layout_width="145dp"
-        android:layout_height="79dp"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/transparent"
         android:inputType="text"
@@ -38,19 +38,6 @@
 <!--                app:layout_constraintStart_toStartOf="parent"-->
 <!--                app:layout_constraintTop_toBottomOf="@+id/sunday" />-->
 
-    <androidx.appcompat.widget.AppCompatButton
-
-        android:id="@+id/monday"
-        android:layout_width="145dp"
-        android:layout_height="79dp"
-        android:backgroundTint="@color/transparent"
-        android:inputType="text"
-        android:text="@string/monday"
-        android:textSize="24sp"
-
-        app:layout_constraintEnd_toEndOf="@+id/sunday"
-        app:layout_constraintTop_toBottomOf="@+id/sunday" />
-
     <!--            <androidx.recyclerview.widget.RecyclerView-->
 
 <!--                android:id="@+id/recViewMon"-->
@@ -62,17 +49,18 @@
 
     <androidx.appcompat.widget.AppCompatButton
 
-
-        android:id="@+id/tuesday"
-        android:layout_width="145dp"
+        android:id="@+id/monday"
+        android:layout_width="wrap_content"
         android:layout_height="79dp"
+        android:layout_marginStart="16dp"
         android:backgroundTint="@color/transparent"
         android:inputType="text"
-        android:text="@string/tuesday"
+
+        android:text="@string/monday"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/monday"
-        app:layout_constraintStart_toStartOf="@+id/monday"
-        app:layout_constraintTop_toBottomOf="@+id/monday" />
+        app:layout_constraintBottom_toBottomOf="@+id/sunday"
+        app:layout_constraintStart_toEndOf="@+id/sunday"
+        app:layout_constraintTop_toTopOf="@+id/sunday" />
 
     <!--            <androidx.recyclerview.widget.RecyclerView-->
 
@@ -82,20 +70,6 @@
 <!--                app:layout_constraintEnd_toEndOf="parent"-->
 <!--                app:layout_constraintStart_toStartOf="parent"-->
 <!--                app:layout_constraintTop_toBottomOf="@+id/tuesday" />-->
-
-    <androidx.appcompat.widget.AppCompatButton
-
-
-        android:id="@+id/wednesday"
-        android:layout_width="145dp"
-        android:layout_height="79dp"
-        android:backgroundTint="@color/transparent"
-        android:inputType="text"
-        android:text="@string/wedensday"
-        android:textSize="24sp"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tuesday" />
 
     <!--            <androidx.recyclerview.widget.RecyclerView-->
 
@@ -109,15 +83,33 @@
     <androidx.appcompat.widget.AppCompatButton
 
 
-        android:id="@+id/thursday"
-        android:layout_width="145dp"
+        android:id="@+id/tuesday"
+        android:layout_width="wrap_content"
         android:layout_height="79dp"
+        android:layout_marginStart="16dp"
         android:backgroundTint="@color/transparent"
         android:inputType="text"
-        android:text="@string/thuresday"
+        android:text="@string/tuesday"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/wednesday"
-        app:layout_constraintTop_toBottomOf="@+id/wednesday" />
+        app:layout_constraintBottom_toBottomOf="@+id/monday"
+        app:layout_constraintStart_toEndOf="@+id/monday"
+        app:layout_constraintTop_toTopOf="@+id/monday" />
+
+    <androidx.appcompat.widget.AppCompatButton
+
+
+        android:id="@+id/wednesday"
+        android:layout_width="wrap_content"
+        android:layout_height="79dp"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/transparent"
+        android:inputType="text"
+        android:text="@string/wedensday"
+
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tuesday"
+        app:layout_constraintStart_toEndOf="@+id/tuesday"
+        app:layout_constraintTop_toTopOf="@+id/tuesday" />
 
     <!--            <androidx.recyclerview.widget.RecyclerView-->
 
@@ -126,19 +118,6 @@
 <!--                android:layout_height="wrap_content"-->
 <!--                app:layout_constraintTop_toBottomOf="@+id/thursday"-->
 <!--                tools:layout_editor_absoluteX="0dp" />-->
-
-    <androidx.appcompat.widget.AppCompatButton
-
-
-        android:id="@+id/friday"
-        android:layout_width="145dp"
-        android:layout_height="79dp"
-        android:backgroundTint="@color/transparent"
-        android:inputType="text"
-        android:text="@string/friday"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/thursday"
-        app:layout_constraintTop_toBottomOf="@+id/thursday" />
 
     <!--            <androidx.recyclerview.widget.RecyclerView-->
 
@@ -152,25 +131,56 @@
     <androidx.appcompat.widget.AppCompatButton
 
 
-        android:id="@+id/saturday"
-        android:layout_width="145dp"
+        android:id="@+id/thursday"
+        android:layout_width="wrap_content"
         android:layout_height="79dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/transparent"
+        android:inputType="text"
+        android:text="@string/thuresday"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunday" />
+
+    <androidx.appcompat.widget.AppCompatButton
+
+
+        android:id="@+id/friday"
+        android:layout_width="wrap_content"
+        android:layout_height="79dp"
+        android:layout_marginStart="24dp"
+        android:backgroundTint="@color/transparent"
+        android:inputType="text"
+        android:text="@string/friday"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/thursday"
+        app:layout_constraintStart_toEndOf="@+id/thursday"
+        app:layout_constraintTop_toTopOf="@+id/thursday" />
+
+    <androidx.appcompat.widget.AppCompatButton
+
+
+        android:id="@+id/saturday"
+        android:layout_width="wrap_content"
+        android:layout_height="79dp"
+        android:layout_marginStart="24dp"
         android:backgroundTint="@color/transparent"
         android:inputType="text"
         android:text="@string/saterday"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/friday"
-        app:layout_constraintTop_toBottomOf="@+id/friday" />
+        app:layout_constraintBottom_toBottomOf="@+id/friday"
+        app:layout_constraintStart_toEndOf="@+id/friday"
+        app:layout_constraintTop_toTopOf="@+id/friday" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recViewPlans"
-        android:layout_width="261dp"
-        android:layout_height="729dp"
-        android:layout_marginStart="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/thursday"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/friday" />
 
     <!--            <androidx.recyclerview.widget.RecyclerView-->
 
