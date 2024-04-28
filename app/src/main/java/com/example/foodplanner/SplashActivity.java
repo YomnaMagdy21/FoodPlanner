@@ -38,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 openSignInScreen();
             }
-        }, 3800);
+        }, 4200);
 
 
         auth = FirebaseAuth.getInstance();

@@ -14,7 +14,7 @@
         android:id="@+id/materialCardView"
         style=""
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="570dp"
         android:checkable="true"
         android:clickable="true"
         android:focusable="true"
@@ -34,8 +34,12 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editTxtEmail"
         android:layout_width="360dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/edit_text"
+
+        android:inputType="text"
+        android:paddingStart="16dp"
         android:hint="@string/username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,8 +48,12 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/email"
         android:layout_width="360dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/edit_text"
+
+        android:inputType="textEmailAddress"
+        android:paddingStart="16dp"
         android:hint="@string/email"
         app:layout_constraintEnd_toEndOf="@+id/editTxtEmail"
         app:layout_constraintStart_toStartOf="@+id/editTxtEmail"
@@ -55,9 +63,13 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password"
         android:layout_width="360dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:hint="@string/password"
+        android:background="@drawable/edit_text"
+
+
+        android:paddingStart="16dp"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/email"
         app:layout_constraintStart_toStartOf="@+id/email"
@@ -66,10 +78,14 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/confirm"
         android:layout_width="360dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:hint="@string/confirm1"
         android:inputType="textPassword"
+        android:background="@drawable/edit_text"
+
+
+        android:paddingStart="16dp"
         app:layout_constraintEnd_toEndOf="@+id/password"
         app:layout_constraintStart_toStartOf="@+id/password"
         app:layout_constraintTop_toBottomOf="@+id/password" />
@@ -87,12 +103,13 @@
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="110dp"
+        android:background="@drawable/rounded_button"
         android:backgroundTint="@color/bink"
         android:fontFamily="sans-serif"
 
@@ -119,7 +136,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="50dp"
         android:text="@string/already"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/materialCardView"

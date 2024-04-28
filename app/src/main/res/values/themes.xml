@@ -4,12 +4,29 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorAccent">@color/red</item>
+        <item name="colorPrimary">@color/bink</item>
+        <item name="colorOnPrimary">@color/bink</item>
     </style>
 
     <style name="Theme.FoodPlanner" parent="Base.Theme.FoodPlanner" >
-        <item name="colorPrimary">@color/red</item>
-        <item name="colorPrimaryDark">@color/darkRed</item>
-        <item name="colorAccent">@color/bink</item>
+        <item name="colorPrimary">@color/bink</item>
+        <item name="colorOnPrimary">@color/bink</item>
+        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
 
-    </style>
+
+
+   </style>
+<!--    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">-->
+<!--        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>-->
+<!--    </style>-->
+
+
+<!--    <style name="ThemeOverlay.App.BottomNavigationView" parent="">-->
+<!--        <item name="colorPrimary">@color/bink</item>-->
+<!--        <item name="colorOnPrimary">@color/bink</item>-->
+<!--    </style>-->
+<!--    <style name="ButtonStyle" parent="Widget.AppCompat.Button">-->
+<!--        <item name="android:background">@color/bink</item>-->
+<!--    </style>-->
+
 </resources>

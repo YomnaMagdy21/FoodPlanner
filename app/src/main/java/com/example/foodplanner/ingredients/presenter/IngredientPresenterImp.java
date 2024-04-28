@@ -1,12 +1,8 @@
 package com.example.foodplanner.ingredients.presenter;
 
-import com.example.foodplanner.area.modelArea.AreaResponse;
-import com.example.foodplanner.area.presenter.AreaPresenter;
-import com.example.foodplanner.area.view.AreaView;
 import com.example.foodplanner.ingredients.modelIngredients.IngredientResponse;
 import com.example.foodplanner.ingredients.view.IngredientView;
 import com.example.foodplanner.model.MealRepository;
-import com.example.foodplanner.network.NetworkCallback;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;

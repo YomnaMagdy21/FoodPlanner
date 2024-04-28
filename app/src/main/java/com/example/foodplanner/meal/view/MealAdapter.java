@@ -47,7 +47,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
     @Override
     public MealAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view=inflater.inflate(R.layout.meal_item,parent,false);
+        View view=inflater.inflate(R.layout.ingredient_item,parent,false);
         MealAdapter.ViewHolder viewHolder=new MealAdapter.ViewHolder(view);
         return viewHolder;
 
@@ -105,11 +105,11 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            img = itemView.findViewById(R.id.imgMeal);
-            mealName = itemView.findViewById(R.id.mealName);
+            img = itemView.findViewById(R.id.imgMealCategories);
+            mealName = itemView.findViewById(R.id.nameMealCategories);
 //            fav = itemView.findViewById(R.id.blackFav);
 //            calender = itemView.findViewById(R.id.calender);
-            cardView=itemView.findViewById(R.id.cardView);
+            cardView=itemView.findViewById(R.id.cardViewCat);
 
 
         }

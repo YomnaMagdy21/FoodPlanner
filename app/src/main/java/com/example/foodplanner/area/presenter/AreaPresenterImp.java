@@ -2,14 +2,7 @@ package com.example.foodplanner.area.presenter;
 
 import com.example.foodplanner.area.modelArea.AreaResponse;
 import com.example.foodplanner.area.view.AreaView;
-import com.example.foodplanner.categories.modelC.CategoryResponse;
-import com.example.foodplanner.categories.presenter.CategoriesPresenter;
-import com.example.foodplanner.home.view.AllMealView;
-import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.MealRepository;
-import com.example.foodplanner.network.NetworkCallback;
-
-import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -17,7 +10,7 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public class AreaPresenterImp implements AreaPresenter, NetworkCallback {
+public class AreaPresenterImp implements AreaPresenter {
     private AreaView _view;
     private MealRepository _repo;
 

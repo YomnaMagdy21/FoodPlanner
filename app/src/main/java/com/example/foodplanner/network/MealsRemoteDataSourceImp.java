@@ -41,24 +41,11 @@ public class MealsRemoteDataSourceImp {
         return client;
     }
 
-    public Observable<MealResponse> makeNetworkCall() { //NetworkCallback networkCallback
+    public Observable<MealResponse> makeNetworkCall() {
 
         Observable<MealResponse> observable = mealService.getMeals();
         return observable.subscribeOn(Schedulers.io());
-//        call.enqueue(new Callback<MealResponse>() {
-//            @Override
-//            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
-//                networkCallback.onSuccessResult(response.body().meals);
-//                Log.i(TAG, "onResponse: " + response.body());
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<MealResponse> call, Throwable t) {
-//                networkCallback.onFailureResult(t.getMessage());
-//
-//            }
-//        });
+
     }
 
     public Observable<CategoryResponse> categoryCall() {

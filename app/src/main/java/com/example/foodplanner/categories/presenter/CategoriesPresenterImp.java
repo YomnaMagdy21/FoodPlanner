@@ -4,21 +4,14 @@ import androidx.annotation.NonNull;
 
 import com.example.foodplanner.categories.modelC.CategoryResponse;
 import com.example.foodplanner.categories.view.CategoriesView;
-import com.example.foodplanner.home.presenter.AllMealPresenter;
-import com.example.foodplanner.home.view.AllMealView;
-import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.MealRepository;
-import com.example.foodplanner.model.MealResponse;
-import com.example.foodplanner.network.NetworkCallback;
-
-import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public class CategoriesPresenterImp implements CategoriesPresenter, NetworkCallback {
+public class CategoriesPresenterImp implements CategoriesPresenter {
     private CategoriesView _view;
     private MealRepository _repo;
 

@@ -9,13 +9,14 @@
     <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/searchEdit"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="370dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/edit_text"
         android:ems="10"
         android:hint="@string/search"
         android:inputType="text"
+        android:paddingStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,8 +26,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mealSearch"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_height="640dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchEdit" />

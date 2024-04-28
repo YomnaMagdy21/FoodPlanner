@@ -93,7 +93,7 @@ public class PlanFragment extends Fragment implements PlanView{
         saturday=view.findViewById(R.id.saturday);
         recyclerView=view.findViewById(R.id.recViewPlans);
         linearLayoutManager=new LinearLayoutManager(view.getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
@@ -165,11 +165,11 @@ public class PlanFragment extends Fragment implements PlanView{
             public void onClick(View v) {
               //  planPresenter=new PlanPresenterImp(PlanFragment.this, MealsRepositoryImp.getInstance(MealsRemoteDataSourceImp.getInstance(), MealLocalDataSourceImp.getInstance(getContext())));
                 if(planPresenter != null) {
-                    if("Wednesday".equals(MealDetailsActivity.d)) {
+                 //   if("Wednesday".equals(MealDetailsActivity.d)) {
                         planPresenter.getPlan("Wednesday");
                         recyclerView.setAdapter(planAdapter);
                         getAllPlans(observable);
-                    }
+                  //  }
                 }
 
             }

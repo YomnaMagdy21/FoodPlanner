@@ -109,7 +109,8 @@ public class HomeFragment extends Fragment implements AllMealView, CategoriesVie
         categoriesPresenter.getCategories();
         if(!LoginFragment.flag){
 
-        linearLayoutManagerArea=new LinearLayoutManager(view.getContext());
+
+            linearLayoutManagerArea=new LinearLayoutManager(view.getContext());
         linearLayoutManagerArea.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewArea.setLayoutManager(linearLayoutManagerArea);
         areaAdapter=new AreaAdapter(view.getContext(),new ArrayList<>(),this);
@@ -120,7 +121,7 @@ public class HomeFragment extends Fragment implements AllMealView, CategoriesVie
         }
         else{
 
-            area.setText("Area not available ");
+            area.setText("");
         }
         logout=view.findViewById(R.id.logoutImg);
         logout.setOnClickListener(new View.OnClickListener() {

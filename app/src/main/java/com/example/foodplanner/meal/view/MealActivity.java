@@ -40,7 +40,7 @@ public class MealActivity extends AppCompatActivity implements MealView {
 
         // cardView=view.findViewById(R.id.cardView);
         linearLayoutManager=new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         homeAdapter=new MealAdapter(this,new ArrayList<>(),this);
 

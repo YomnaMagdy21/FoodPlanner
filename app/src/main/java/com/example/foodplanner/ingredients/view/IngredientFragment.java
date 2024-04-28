@@ -63,7 +63,7 @@ public class IngredientFragment extends Fragment implements IngredientView{
         search=view.findViewById(R.id.searchEdit);
         recyclerView=view.findViewById(R.id.mealSearch);
         linearLayoutManager=new LinearLayoutManager(view.getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         homeAdapter=new IngredientAdapter(view.getContext(),new ArrayList<>(),this);
 

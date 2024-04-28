@@ -74,7 +74,7 @@ public class FavoriteFragment extends Fragment implements FavoriteView{
 
         // cardView=view.findViewById(R.id.cardView);
         linearLayoutManager=new LinearLayoutManager(view.getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         homeAdapter=new FavoriteAdapter(view.getContext(),new ArrayList<>(),this);
 
